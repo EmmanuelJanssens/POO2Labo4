@@ -24,3 +24,7 @@ void Humanoid::executeAction(Field& field){
 bool Humanoid::isAlive(){
     return true;
 }
+
+Cell Humanoid::getPos(){
+    return _position;
+}

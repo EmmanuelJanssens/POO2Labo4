@@ -7,10 +7,11 @@ using namespace std;
 
 
 int main(int argc, char* argv[]){
+    srand (time(NULL));
 
     Field f(10,10);
 
-    cout<<f.nextTurn()<<endl;
-    cout<<f.nextTurn()<<endl;
+    cout<<"Start turn \n"<<f.nextTurn()<<endl;
+    cout<<"Start turn \n"<<f.nextTurn()<<endl;
     return EXIT_SUCCESS;
 }

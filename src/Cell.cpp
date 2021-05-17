@@ -1,5 +1,9 @@
 #include "../include/Cell.h"
 
+std::ostream& operator<<(std::ostream& os, const Cell& c){
+    os<<"("<<c._x<<","<<c._y<<")";
+    return os;
+}
 
 Cell::Cell():_x(0),_y(0){}
 Cell::Cell(const Cell& c){

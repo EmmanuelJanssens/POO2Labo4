@@ -3,7 +3,7 @@
 
 #include <algorithm>
 #include <list>
-
+#include <iostream>
 class Cell{
 
     //x position
@@ -50,6 +50,10 @@ class Cell{
 
     size_t getX();
     size_t getY();
+
+    friend std::ostream& operator<<(std::ostream& op, const Cell& c);
 };
+
+
 
 #endif //CELL_H

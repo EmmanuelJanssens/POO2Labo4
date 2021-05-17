@@ -33,7 +33,7 @@ class Humanoid{
      * */
     bool isAlive();
 
-    
+    Cell getPos();
 };
 
 #endif //HUMANOID_H
