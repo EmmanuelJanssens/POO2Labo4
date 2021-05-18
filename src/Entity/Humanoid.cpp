@@ -4,8 +4,8 @@
 
 
 void Humanoid::setAction(Field& field){
-    MoveAction *action = new MoveAction(_position);
-    action->random(field,2);
+    MoveAction *action = new MoveAction(_position,2);
+    action->random(field);
 
     if(_action != nullptr){
         delete _action;

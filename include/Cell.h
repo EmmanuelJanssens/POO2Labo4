@@ -5,12 +5,12 @@
 #include <list>
 #include <iostream>
 class Cell{
-
+    protected:
     //x position
-    size_t _x;
+    int _x;
 
     //y position
-    size_t _y;
+    int _y;
 
 
     public:
@@ -31,7 +31,7 @@ class Cell{
      * @param x x coordinates
      * @param y y coordinates
      * */
-    Cell(size_t x, size_t y);
+    Cell(int x, int y);
 
     /**
      * Set the coordinates
@@ -39,7 +39,7 @@ class Cell{
      * @param y y coordinates
      * */
 
-    void setCoord(size_t x, size_t y);
+    void setCoord(int x, int y);
     
     /**
      * Set the coordinates
@@ -48,8 +48,11 @@ class Cell{
     void setCoord(const Cell& c);
 
 
-    size_t getX();
-    size_t getY();
+    int getX() const;
+    int getY() const;
+
+
+    Cell& operator=(const Cell& c);
 
     friend std::ostream& operator<<(std::ostream& op, const Cell& c);
 };

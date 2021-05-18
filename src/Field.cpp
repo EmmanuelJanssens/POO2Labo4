@@ -3,13 +3,31 @@
 #include <iostream>
 
 Field::Field(int w, int h)
-    :_turn(0){
+    :_turn(0),_w(w),_h(h){
+    _humanoids.push_back(new Humanoid());
+    _humanoids.push_back(new Humanoid());
+    _humanoids.push_back(new Humanoid());
+    _humanoids.push_back(new Humanoid());
+    _humanoids.push_back(new Humanoid());
+    _humanoids.push_back(new Humanoid());
+    _humanoids.push_back(new Humanoid());
+    _humanoids.push_back(new Humanoid());
+    _humanoids.push_back(new Humanoid());
+    _humanoids.push_back(new Humanoid());
     _humanoids.push_back(new Humanoid());
     _humanoids.push_back(new Humanoid());
     _humanoids.push_back(new Humanoid());
 
 }
-int Field::nextTurn(){
+
+Field::~Field(){
+    for(Humanoid* h : _humanoids){
+        if(h != nullptr)
+            delete h;
+        h = nullptr;
+    }
+}
+size_t Field::nextTurn(){
     
     for(std::list<Humanoid*>::iterator it = _humanoids.begin(); it!= _humanoids.end(); it++){
         std::cout<<"Entity Current pos "<<(*it)->getPos()<<std::endl;
@@ -33,4 +51,12 @@ int Field::nextTurn(){
     }
 
     return _turn++;
+}
+
+int Field::getWidth() const{
+    return _w;
+}
+
+int Field::getHeight() const{
+    return _h;
 }
