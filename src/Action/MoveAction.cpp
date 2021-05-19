@@ -1,10 +1,10 @@
 #include "../../include/Action/MoveAction.h"
 #include <iostream>
 #include <random>
-
-MoveAction::MoveAction(Cell& targetPos, int distance):
-    _targetPos(targetPos),
+#include "../../include/Entity/Humanoid.h"
+MoveAction::MoveAction(Humanoid* target, int distance):
     _distance(distance),
+    _target(target),
     _rmove{
         &MoveAction::Up, 
         &MoveAction::Down,
@@ -19,54 +19,90 @@ MoveAction::MoveAction(Cell& targetPos, int distance):
 }
 
 void MoveAction::execute(Field& field) const {
-    _targetPos.setCoord(_endPos);
+    _target->move(field,_endPos);
 }
 
 void MoveAction::random(Field& field  ){
-    std::cout<<"Random move YOLO\n";
+    //std::cout<<"Random move YOLO\n";
 
     int randFuncId = rand()%8;
     auto res = _rmove[randFuncId];
     
-    Cell temp = (this->*res)();
-
-    if(isInBoundsBeforeMove(field,temp))
-        _endPos = temp;
+    Cell *temp = (this->*res)(field);
+    
+    _endPos = temp;
+    
 }
 
-bool MoveAction::isInBoundsBeforeMove(Field& f, const Cell &pos){
+Cell* MoveAction::Up(Field& field){
+    Cell* t = _target->getPos();
+    int newx = _target->getPos()->getX();
+    int newy = _target->getPos()->getY()+_distance;
 
-    if(pos.getX() < 0)
-        return false;
-    if(pos.getY() < 0)
-        return false;
-    if(pos.getX() > f.getWidth())
-        return false;
-    if(pos.getY() > f.getHeight())
-        return false;    
-    return true;
+    if(newx > 0 && newy >0 && newx < field.getWidth() && newy < field.getHeight())
+        t = field.getCellAt(newx,newy);
+    return t;
 }
-Cell MoveAction::Up(){
-    return Cell(_targetPos.getX(),_targetPos.getY()+_distance);
+Cell* MoveAction::Down(Field& field){
+    Cell* t = _target->getPos();
+    int newx = _target->getPos()->getX();
+    int newy = _target->getPos()->getY()-_distance;
+
+    if(newx > 0 && newy >0 && newx < field.getWidth() && newy < field.getHeight())
+        t = field.getCellAt(newx,newy);
+    return t;
 }
-Cell MoveAction::Down(){
-    return Cell(_targetPos.getX(),_targetPos.getY()-_distance);
+Cell* MoveAction::Left(Field& field){
+    Cell* t = _target->getPos();
+    int newx = _target->getPos()->getX()-_distance;
+    int newy = _target->getPos()->getY();
+
+    if(newx > 0 && newy >0 && newx < field.getWidth() && newy < field.getHeight())
+        t = field.getCellAt(newx,newy);
+    return t;
 }
-Cell MoveAction::Left(){
-    return Cell(_targetPos.getX()-_distance,_targetPos.getY());
+Cell* MoveAction::Right(Field& field){
+    Cell* t = _target->getPos();
+    int newx = _target->getPos()->getX()+_distance;
+    int newy = _target->getPos()->getY();
+
+    if(newx > 0 && newy >0 && newx < field.getWidth() && newy < field.getHeight())
+        t = field.getCellAt(newx,newy);
+    return t;
 }
-Cell MoveAction::Right(){
-    return Cell(_targetPos.getX()+_distance,_targetPos.getY());
+Cell* MoveAction::UpLeft(Field& field){
+    Cell* t = _target->getPos();
+    int newx = _target->getPos()->getX()-_distance;
+    int newy = _target->getPos()->getY()+_distance;
+
+    if(newx > 0 && newy >0 && newx < field.getWidth() && newy < field.getHeight())
+        t = field.getCellAt(newx,newy);
+    return t;
 }
-Cell MoveAction::UpLeft(){
-    return Cell(_targetPos.getX()-_distance,_targetPos.getY()+_distance);
+Cell* MoveAction::UpRight(Field& field){
+    Cell* t = _target->getPos();
+    int newx = _target->getPos()->getX()+_distance;
+    int newy = _target->getPos()->getY()+_distance;
+
+    if(newx > 0 && newy >0 && newx < field.getWidth() && newy < field.getHeight())
+        t = field.getCellAt(newx,newy);
+    return t;
 }
-Cell MoveAction::UpRight(){
-    return Cell(_targetPos.getX()+_distance,_targetPos.getY()+_distance);
+Cell* MoveAction::DownLeft(Field& field){
+    Cell* t = _target->getPos();    
+    int newx = _target->getPos()->getX()-_distance;
+    int newy = _target->getPos()->getY()-_distance;
+
+    if(newx > 0 && newy >0 && newx < field.getWidth() && newy < field.getHeight())
+        t = field.getCellAt(newx,newy);
+    return t;
 }
-Cell MoveAction::DownLeft(){
-    return Cell(_targetPos.getX()-_distance,_targetPos.getY()-_distance);
-}
-Cell MoveAction::DownRight(){
-    return Cell(_targetPos.getX()+_distance,_targetPos.getY()+_distance);
+Cell* MoveAction::DownRight(Field& field){
+    Cell* t = _target->getPos();    
+    int newx = _target->getPos()->getX()+_distance;
+    int newy = _target->getPos()->getY()-_distance;
+
+    if(newx > 0 && newy >0 && newx < field.getWidth() && newy < field.getHeight())
+        t = field.getCellAt(newx,newy);
+    return t;
 }

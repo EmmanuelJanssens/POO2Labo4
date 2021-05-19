@@ -6,16 +6,15 @@
 #include <vector>
 class MoveAction : public Action{
 
-    //position to be modified
-    Cell& _targetPos;
+    Humanoid* _target;
 
     //position to be acheived
-    Cell _endPos;
+    Cell* _endPos;
 
     //distance to be travelled
     int _distance;
 
-    typedef Cell(MoveAction::*RandomMove)();
+    typedef Cell*(MoveAction::*RandomMove)(Field& field);
     RandomMove _rmove[8];
 
 
@@ -26,20 +25,16 @@ class MoveAction : public Action{
      *     / | \
      *       v
      * */
-    Cell Up();
-    Cell Down();
-    Cell Left();
-    Cell Right();
-    Cell UpRight();
-    Cell DownRight();
-    Cell UpLeft();
-    Cell DownLeft();
+    Cell* Up(Field& field);
+    Cell* Down(Field& field);
+    Cell* Left(Field& field);
+    Cell* Right(Field& field);
+    Cell* UpRight(Field& field);
+    Cell* DownRight(Field& field);
+    Cell* UpLeft(Field& field);
+    Cell* DownLeft(Field& field);
     
 
-    /**
-     * Check if the current position is in bounds before moving
-     * */
-    bool isInBoundsBeforeMove(Field& f,const Cell& c);
 
     public:
 
@@ -47,7 +42,7 @@ class MoveAction : public Action{
      * Constructor
      * @param targetPos the target to be modified
      * */
-    MoveAction(Cell& targetPos, int distance);
+    MoveAction(Humanoid* targetPos, int distance);
     
     /**
      * Movement's own action
