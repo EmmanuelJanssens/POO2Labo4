@@ -4,6 +4,10 @@
 #include <algorithm>
 #include <list>
 #include <iostream>
+
+
+class Humanoid;
+
 class Cell{
     protected:
     //x position
@@ -12,6 +16,7 @@ class Cell{
     //y position
     int _y;
 
+    std::list<Humanoid*> _entitiesOnCell;
 
     public:
 
@@ -33,6 +38,8 @@ class Cell{
      * */
     Cell(int x, int y);
 
+    Cell(int x, int y, Humanoid* h);
+
     /**
      * Set the coordinates
      * @param x x coordinates
@@ -51,6 +58,11 @@ class Cell{
     int getX() const;
     int getY() const;
 
+    void removeEntity(Humanoid* h);
+    void removeAll();
+    
+    void setEntity(Humanoid* h);
+    bool hasEntity();
 
     Cell& operator=(const Cell& c);
 

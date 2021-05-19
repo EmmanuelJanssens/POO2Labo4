@@ -7,7 +7,7 @@ class Humanoid{
     
     bool _isAlive;
 
-    Cell _position;
+    Cell* _position;
 
     Action* _action;
     public:
@@ -33,7 +33,10 @@ class Humanoid{
      * */
     bool isAlive();
 
-    Cell getPos();
+    Cell* getPos();
+
+    void setPosition( Field& f,Cell* pos);
+    void move (Field& f,Cell* pos);
 };
 
 #endif //HUMANOID_H

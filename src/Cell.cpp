@@ -1,7 +1,16 @@
+#include <typeinfo>
 #include "../include/Cell.h"
-
+#include "../include/Entity/Humanoid.h"
 std::ostream& operator<<(std::ostream& os, const Cell& c){
-    os<<"("<<c._x<<","<<c._y<<")";
+
+    std::string type = " ";
+    for(Humanoid* h : c._entitiesOnCell){
+        if(typeid(*h) == typeid(Humanoid))
+            type = "h";
+        else
+            type = "0";
+    }
+    os<<"("<<c._x<<","<<c._y<<") "<<type<<" ";
     return os;
 }
 
@@ -12,8 +21,9 @@ Cell::Cell(const Cell& c){
 Cell::Cell(int x, int y){
     setCoord(x,y);
 }
-
-// TODO pourquoi setCoord? un cellule ne change jamais de coordonée
+Cell::Cell(int x, int y, Humanoid* h):_x(x),_y(y){
+    setEntity(h);
+}
 void Cell::setCoord(int x, int y){
     _x = x;
     _y = y;
@@ -31,6 +41,28 @@ int Cell::getY()const{
     return _y;
 }
 
+void Cell::removeAll(){
+    for(Humanoid* h: _entitiesOnCell){
+        _entitiesOnCell.remove(h);
+    }
+}
+void Cell::removeEntity(Humanoid* toRemove){
+    if(_entitiesOnCell.empty())
+        return;
+    for(Humanoid* h: _entitiesOnCell){
+        if(h == toRemove){
+            _entitiesOnCell.remove(h);
+            break;
+        }
+    }
+}
+void Cell::setEntity(Humanoid* h){
+    if(h != nullptr)
+        _entitiesOnCell.push_back(h);
+}
+bool Cell::hasEntity(){
+    return !_entitiesOnCell.empty();
+}
 Cell& Cell::operator=(const Cell& c){
 
     this->setCoord(c);

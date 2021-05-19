@@ -11,7 +11,21 @@ int main(int argc, char* argv[]){
 
     Field f(10,10);
 
-    cout<<"Start turn \n"<<f.nextTurn()<<endl;
-    cout<<"Start turn \n"<<f.nextTurn()<<endl;
+    cout<<"\n\n\nplay\n\n\n";
+    for(int i = 0; i < 10; i++){
+        for(int j = 0; j < 10; j++){
+            cout<<*f.getCellAt(j,i);
+        }
+        cout<<endl;
+    }
+
+    f.nextTurn();
+    cout<<"\n\n\nplay\n\n\n";
+    for(int i = 0; i < 10; i++){
+        for(int j = 0; j < 10; j++){
+            cout<<*f.getCellAt(j,i);
+        }
+        cout<<endl;
+    }
     return EXIT_SUCCESS;
 }

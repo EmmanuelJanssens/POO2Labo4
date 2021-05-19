@@ -4,7 +4,7 @@
 
 
 void Humanoid::setAction(Field& field){
-    MoveAction *action = new MoveAction(_position,2);
+    MoveAction *action = new MoveAction(this,2);
     action->random(field);
 
     if(_action != nullptr){
@@ -25,6 +25,16 @@ bool Humanoid::isAlive(){
     return true;
 }
 
-Cell Humanoid::getPos(){
+Cell* Humanoid::getPos(){
     return _position;
+}
+
+void Humanoid::setPosition(Field& f,Cell* pos){
+    _position = pos;
+    f.getCellAt(_position->getX(), _position->getY())->setEntity(this);
+
+}
+void Humanoid::move(Field& f,Cell* pos){
+    f.getCellAt(_position->getX(), _position->getY())->removeEntity(this);
+    setPosition(f,pos);
 }

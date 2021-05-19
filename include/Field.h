@@ -2,6 +2,8 @@
 #define FIELD_H
 
 #include <list>
+#include <vector>
+#include "Cell.h"
 
 class Humanoid;
 class Field{
@@ -18,6 +20,11 @@ class Field{
     //list of humanoids/entities present in the scene
     std::list<Humanoid*> _humanoids;
 
+
+    std::vector<Cell*> _row;
+    //list of cells of the game
+    std::vector<std::vector<Cell*>> _grid;
+
     public:
 
     /**
@@ -32,9 +39,16 @@ class Field{
      * */
     size_t nextTurn();
 
+    void cleanCells();
+
     int getWidth() const;
 
     int getHeight() const;    
+
+    Cell* getCellAt(int i, int j);
+
+    Cell* cell(int i, int j);
+
 };
 
 #endif //FIELD_H
