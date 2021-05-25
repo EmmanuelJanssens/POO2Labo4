@@ -9,7 +9,6 @@ class BuffyView;
 class BuffyController {
 private:
 
-
 public:
 
     BuffyController();

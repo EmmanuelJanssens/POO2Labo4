@@ -1,7 +1,3 @@
-//
-// Created by Rosalie Chhen on 17.05.2021.
-//
-
 #include "../../include/view/ConsoleView.h"
 #include "../../include/Entity/Humanoid.h"
 #include "../../include/Entity/Human.h"
@@ -9,6 +5,7 @@
 
 
 #include <iostream>
+#include <string>
 
 
 using namespace std;
@@ -43,8 +40,10 @@ void ConsoleView::display(const Field &field)  {
             Cell* cellToDisplay = field.getCellAt(iLine, iCol);
             //cout << "(" << cellToDisplay->getX() << "," << cellToDisplay->getY() << ")"; // DEBUG, TO ERASE
             if(cellToDisplay->hasEntity()){
-                //display(*cellToDisplay->getEntitiesOnCell().back());
-                (cellToDisplay->getEntitiesOnCell().back())->render(*this); // on display le dernier de la liste sur une cellule
+                // on display le dernier de la liste sur une cellule
+                // Par liaison dynamique, va appeler le render() de Human, Vampire ou Hunter
+                // qui va appeler la bonne surcharge de display dans la classe ConsoleView
+                (cellToDisplay->getEntitiesOnCell().back())->render(*this);
                 SetConsoleTextAttribute(hConsole, 15); // reset color console text
             } else {
                 cout << _EMPTY_SYMBOL;
@@ -53,5 +52,45 @@ void ConsoleView::display(const Field &field)  {
         cout << _VERTICAL_BORDER << "\n";
     }
     cout << _CORNER << horizontal_border << _CORNER << endl;
+
+}
+
+
+Command ConsoleView::processInput() const{
+    char input;
+    bool valid = false;
+    Command command = DEFAULT;
+    while(!valid){
+        std::cout << "q)quit s)tatistics n)ext: ";
+        input = (char) tolower(cin.get());
+        if (input == '\n') {
+            cout << "Enter key is pressed" << endl;
+            command = NEXT;
+            break;
+        } else {
+
+            switch(input) {
+                case _QUIT_KEY:
+                    valid = true;
+                    command = QUIT;
+                    break;
+                case _STATISTICS_KEY:
+                    valid = true;
+                    command = STATISTICS;
+                    break;
+                case _NEXT_KEY_1:
+                    valid = true;
+                    command = NEXT;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
+    return command;
 
 }

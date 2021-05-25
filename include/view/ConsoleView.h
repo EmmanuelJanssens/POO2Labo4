@@ -22,6 +22,12 @@ class ConsoleView : public BuffyView{
     static const char _HORIZONTAL_BORDER = '-';
     static const char _CORNER = '+';
 
+    static const char _QUIT_KEY = 'q';
+    static const char _STATISTICS_KEY = 's';
+    static const char _NEXT_KEY_1 = 'n';
+    static const char _NEXT_KEY = '\n';
+
+
 public:
     explicit ConsoleView();
 
@@ -29,6 +35,7 @@ public:
     void display(const Hunter& hunter) const override;
     void display(const Vampire& vampire) const override;
     void display(const Field& field) override;
+    Command processInput() const override;
 };
 
 
