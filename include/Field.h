@@ -45,9 +45,8 @@ class Field{
 
     int getHeight() const;    
 
-    Cell* getCellAt(int i, int j);
-
-    Cell* cell(int i, int j);
+    // TODO change param int to unsigned
+    Cell* getCellAt(int i, int j) const;
 
 };
 

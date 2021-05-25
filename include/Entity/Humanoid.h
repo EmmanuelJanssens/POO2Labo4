@@ -2,8 +2,9 @@
 #define HUMANOID_H
 #include "../Cell.h"
 #include "../Action/Action.h"
+#include "../view/Displayable.h"
 class Field;
-class Humanoid{
+class Humanoid : public Displayable{
     
     bool _isAlive;
 
@@ -37,6 +38,8 @@ class Humanoid{
 
     void setPosition( Field& f,Cell* pos);
     void move (Field& f,Cell* pos);
+
+    virtual void render(BuffyView& view) const = 0;
 };
 
 #endif //HUMANOID_H

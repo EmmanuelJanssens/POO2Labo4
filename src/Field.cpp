@@ -1,22 +1,22 @@
 #include "../include/Field.h"
 #include "../include/Entity/Humanoid.h"
+#include "../include/Entity/Hunter.h"
+#include "../include/Entity/Vampire.h"
+#include "../include/Entity/Human.h"
+
 #include <iostream>
 
 Field::Field(int w, int h)
     :_turn(0),_w(w),_h(h),_row(w,nullptr),_grid(h,_row){
-    _humanoids.push_back(new Humanoid());
-    _humanoids.push_back(new Humanoid());
-    _humanoids.push_back(new Humanoid());
-    _humanoids.push_back(new Humanoid());
-    _humanoids.push_back(new Humanoid());
-    _humanoids.push_back(new Humanoid());
-    _humanoids.push_back(new Humanoid());
-    _humanoids.push_back(new Humanoid());
-    _humanoids.push_back(new Humanoid());
-    _humanoids.push_back(new Humanoid());
-    _humanoids.push_back(new Humanoid());
-    _humanoids.push_back(new Humanoid());
-    _humanoids.push_back(new Humanoid());
+
+    unsigned nbHumans = 5;
+    unsigned nbVampires = 3;
+    for(unsigned i = 0; i < nbHumans; i++){
+        _humanoids.push_back(new Human());
+    }
+    for(unsigned i = 0; i < nbVampires; i++){
+        _humanoids.push_back(new Vampire());
+    }
 
 
     std::cout<<" Initialize \n";
@@ -24,10 +24,11 @@ Field::Field(int w, int h)
     for(int i = 0; i < w; i++){
         for(int j = 0; j < h; j++){
             _grid.at(j).at(i) = new Cell(j,i);
-            std::cout<< *_grid.at(j).at(i);
+           // std::cout<< *_grid.at(j).at(i);
         }
-        std::cout<<std::endl;
+        //std::cout<<std::endl;
     }
+
 
     //put entities on random positions
     for(Humanoid* entity: _humanoids){
@@ -38,6 +39,8 @@ Field::Field(int w, int h)
 
     }
 
+    // DEBUG
+    /*
     std::cout<<" After init \n";
 
     for(int i = 0; i < w; i++){
@@ -46,7 +49,7 @@ Field::Field(int w, int h)
             std::cout<< *_grid.at(j).at(i);
         }
         std::cout<<std::endl;
-    }
+    }*/
 }
 
 Field::~Field(){
@@ -104,6 +107,6 @@ int Field::getHeight() const{
     return _h;
 }
 
-Cell* Field::getCellAt(int i, int j){
+Cell* Field::getCellAt(int i, int j) const {
     return _grid.at(i).at(j);
 }

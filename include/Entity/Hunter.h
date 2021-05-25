@@ -1,0 +1,3 @@
+class Hunter : public Humanoid{
+
+};

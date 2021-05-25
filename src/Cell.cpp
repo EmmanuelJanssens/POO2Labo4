@@ -2,7 +2,7 @@
 #include "../include/Cell.h"
 #include "../include/Entity/Humanoid.h"
 std::ostream& operator<<(std::ostream& os, const Cell& c){
-
+    /* // DEBUG
     std::string type = " ";
     for(Humanoid* h : c._entitiesOnCell){
         if(typeid(*h) == typeid(Humanoid))
@@ -11,6 +11,7 @@ std::ostream& operator<<(std::ostream& os, const Cell& c){
             type = "0";
     }
     os<<"("<<c._x<<","<<c._y<<") "<<type<<" ";
+    */
     return os;
 }
 
@@ -60,7 +61,7 @@ void Cell::setEntity(Humanoid* h){
     if(h != nullptr)
         _entitiesOnCell.push_back(h);
 }
-bool Cell::hasEntity(){
+bool Cell::hasEntity() const{
     return !_entitiesOnCell.empty();
 }
 Cell& Cell::operator=(const Cell& c){
@@ -68,4 +69,8 @@ Cell& Cell::operator=(const Cell& c){
     this->setCoord(c);
 
     return *this;
+}
+
+const std::list<Humanoid *> &Cell::getEntitiesOnCell() const {
+    return _entitiesOnCell;
 }

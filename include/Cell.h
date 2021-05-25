@@ -18,7 +18,7 @@ class Cell{
 
     std::list<Humanoid*> _entitiesOnCell;
 
-    public:
+public:
 
     /**
      * Default constructor
@@ -57,12 +57,13 @@ class Cell{
 
     int getX() const;
     int getY() const;
+    const std::list<Humanoid *> &getEntitiesOnCell() const;
 
     void removeEntity(Humanoid* h);
     void removeAll();
     
     void setEntity(Humanoid* h);
-    bool hasEntity();
+    bool hasEntity() const;
 
     Cell& operator=(const Cell& c);
 
