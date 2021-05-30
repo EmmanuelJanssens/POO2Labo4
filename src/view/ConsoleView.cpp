@@ -18,7 +18,8 @@ void ConsoleView::display(const Human &human) const {
 }
 
 void ConsoleView::display(const Hunter &hunter) const {
-
+    SetConsoleTextAttribute(hConsole, _HUNTER_COLOR);
+    cout << _HUNTER_SYMBOL;
 }
 
 void ConsoleView::display(const Vampire &vampire) const {

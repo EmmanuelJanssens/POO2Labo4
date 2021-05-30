@@ -17,6 +17,7 @@ Field::Field(int w, int h)
     for(unsigned i = 0; i < nbVampires; i++){
         _humanoids.push_back(new Vampire());
     }
+    _humanoids.push_back(new Hunter());
 
 
     std::cout<<" Initialize \n";

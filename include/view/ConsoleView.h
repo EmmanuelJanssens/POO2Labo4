@@ -13,9 +13,11 @@ class ConsoleView : public BuffyView{
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     static const unsigned _VAMPIRE_COLOR = FOREGROUND_BLUE;
     static const unsigned _HUMAN_COLOR = 13;//FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE;
+    static const unsigned _HUNTER_COLOR = 6;
 
     static const char _VAMPIRE_SYMBOL = 'V';
     static const char _HUMAN_SYMBOL = 'h';
+    static const char _HUNTER_SYMBOL = 'B';
     static const char _EMPTY_SYMBOL = ' ';
 
     static const char _VERTICAL_BORDER = '|';
@@ -25,7 +27,6 @@ class ConsoleView : public BuffyView{
     static const char _QUIT_KEY = 'q';
     static const char _STATISTICS_KEY = 's';
     static const char _NEXT_KEY_1 = 'n';
-    static const char _NEXT_KEY = '\n';
 
 
 public:

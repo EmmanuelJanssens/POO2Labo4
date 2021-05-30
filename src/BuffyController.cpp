@@ -23,6 +23,7 @@ void BuffyController::start(BuffyView &view) {
                 break;
             case NEXT:
                 // Do the next simulation
+                f.nextTurn();
                 std::cout << "NEXT" << std::endl; // debug
                 break;
             default:
