@@ -7,6 +7,7 @@
 class Human : public Humanoid{
 public:
     void render(BuffyView& view) const override;
+    void setAction(Field& field) override;
 };
 
 

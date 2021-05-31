@@ -41,7 +41,7 @@ Field::Field(int w, int h)
     }
 
     // DEBUG
-    /*
+
     std::cout<<" After init \n";
 
     for(int i = 0; i < w; i++){
@@ -50,7 +50,7 @@ Field::Field(int w, int h)
             std::cout<< *_grid.at(j).at(i);
         }
         std::cout<<std::endl;
-    }*/
+    }
 }
 
 Field::~Field(){
@@ -69,24 +69,40 @@ Field::~Field(){
 size_t Field::nextTurn(){
     
     for(std::list<Humanoid*>::iterator it = _humanoids.begin(); it!= _humanoids.end(); it++){
-        std::cout<<"Entity Current pos "<<*(*it)->getPos()<<std::endl;
+        //std::cout<<"Entity Current pos "<<*(*it)->getPos()<<std::endl;
         (*it)->setAction(*this);
     }
 
     for(std::list<Humanoid*>::iterator it = _humanoids.begin(); it != _humanoids.end(); it++){
         (*it)->executeAction(*this);
-        std::cout<<"Entity Current pos (After Move) "<<*(*it)->getPos()<<std::endl;
+        //std::cout<<"Entity Current pos (After Move) "<<*(*it)->getPos()<<std::endl;
     }
 
     for(std::list<Humanoid*>::iterator it = _humanoids.begin(); it != _humanoids.end(); ){
         if( !(*it)->isAlive()){
             Humanoid* toDelete = *it;
             it = _humanoids.erase(it);
+            //_grid[toDelete->getPos()->getX()][toDelete->getPos()->getY()]->removeEntity(*it);
+            // effacer de la case aussi
+
+
+
             delete toDelete;
         }
         else{
             ++it;
         }
+    }
+    // DEBUG
+
+    std::cout<<" In Next Turn \n";
+
+    for(int i = 0; i < _w; i++){
+        for(int j = 0; j < _h; j++){
+
+            std::cout<< *_grid.at(j).at(i);
+        }
+        std::cout<<std::endl;
     }
 
     return _turn++;
@@ -110,4 +126,47 @@ int Field::getHeight() const{
 
 Cell* Field::getCellAt(int i, int j) const {
     return _grid.at(i).at(j);
+}
+
+std::list<Humanoid *> Field::getAround(Humanoid *predator) {
+
+    int util[] = {-1, 0, 1};
+    Cell* center = predator->getPos();
+    std::list<Humanoid *> results;
+
+    for(int u : util){
+        for(int v : util){
+            int xToCheck = center->getX() + u;
+            int yToCheck = center->getY() + v;
+            // pad depasser les bords et pas soi-meme
+            if(xToCheck >= 0 && xToCheck < _w && yToCheck >= 0 && yToCheck < _h && !(u == 0 && v == 0)) {
+                std::list<Humanoid *> humanoidsToCheck = getCellAt(xToCheck, yToCheck)->getEntitiesOnCell();
+                for(Humanoid* h : humanoidsToCheck){
+                    results.push_back(h);
+                }
+            }
+        }
+    }
+
+    return results;
+}
+
+
+template<typename T>
+Humanoid *Field::getClosestTo(Humanoid* predator)  {
+    Humanoid* closestFound = nullptr;
+
+    int minimalDistance = std::numeric_limits<int>:: max();
+
+    for(Humanoid* h : _humanoids){
+        if(dynamic_cast<T*>(h)){
+            int newDistance = predator->getPos()->distanceTo(h->getPos());
+            if(newDistance < minimalDistance){
+                minimalDistance = newDistance;
+                closestFound = h;
+            }
+        }
+    }
+
+    return closestFound;
 }

@@ -33,7 +33,7 @@ class MoveAction : public Action{
     Cell* DownRight(Field& field);
     Cell* UpLeft(Field& field);
     Cell* DownLeft(Field& field);
-    
+
 
 
     public:
@@ -56,7 +56,9 @@ class MoveAction : public Action{
      * @param radius to wich extent we can move
      * */
     void random(Field& field );
-    
+    void getCloserTo(Field& field);
+
+
 };
 
 #endif //MOVEACTION_H

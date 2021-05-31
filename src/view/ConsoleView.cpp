@@ -39,7 +39,7 @@ void ConsoleView::display(const Field &field)  {
         cout << _VERTICAL_BORDER;
         for(unsigned iCol = 0; iCol < field.getWidth(); iCol++){
             Cell* cellToDisplay = field.getCellAt(iLine, iCol);
-            //cout << "(" << cellToDisplay->getX() << "," << cellToDisplay->getY() << ")"; // DEBUG, TO ERASE
+            cout << "(" << cellToDisplay->getX() << "," << cellToDisplay->getY() << ")"; // DEBUG, TO ERASE
             if(cellToDisplay->hasEntity()){
                 // on display le dernier de la liste sur une cellule
                 // Par liaison dynamique, va appeler le render() de Human, Vampire ou Hunter

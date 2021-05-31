@@ -1,17 +1,21 @@
 #include <typeinfo>
+#include <iomanip>
 #include "../include/Cell.h"
 #include "../include/Entity/Humanoid.h"
 std::ostream& operator<<(std::ostream& os, const Cell& c){
-    /* // DEBUG
-    std::string type = " ";
+     // DEBUG
+    std::string type = "";
     for(Humanoid* h : c._entitiesOnCell){
+        type = typeid(*h).name();
+        /*
         if(typeid(*h) == typeid(Humanoid))
             type = "h";
         else
             type = "0";
+            */
     }
-    os<<"("<<c._x<<","<<c._y<<") "<<type<<" ";
-    */
+    os<<"("<<c._x<<","<<c._y<<") "<< std::left << std::setw(4) << std::setfill(' ') << type[0]<<" ";
+
     return os;
 }
 
@@ -73,4 +77,8 @@ Cell& Cell::operator=(const Cell& c){
 
 const std::list<Humanoid *> &Cell::getEntitiesOnCell() const {
     return _entitiesOnCell;
+}
+
+int Cell::distanceTo(Cell* c) const{
+    return std::max(std::abs(c->_x - _x), std::abs(c->_y - _y));
 }

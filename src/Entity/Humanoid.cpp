@@ -3,9 +3,8 @@
 #include "../../include/Action/MoveAction.h"
 
 
-void Humanoid::setAction(Field& field){
-    MoveAction *action = new MoveAction(this,2);
-    action->random(field);
+void Humanoid::cleanAndSetAction(Action* action){
+
 
     if(_action != nullptr){
         delete _action;
@@ -22,7 +21,7 @@ void Humanoid::executeAction(Field& field){
 }
 
 bool Humanoid::isAlive(){
-    return true;
+    return _isAlive;
 }
 
 Cell* Humanoid::getPos(){
@@ -37,4 +36,8 @@ void Humanoid::setPosition(Field& f,Cell* pos){
 void Humanoid::move(Field& f,Cell* pos){
     f.getCellAt(_position->getX(), _position->getY())->removeEntity(this);
     setPosition(f,pos);
+}
+
+void Humanoid::dies() {
+    _isAlive = false;
 }

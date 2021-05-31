@@ -48,6 +48,15 @@ class Field{
     // TODO change param int to unsigned
     Cell* getCellAt(int i, int j) const;
 
+    // Retourne les humanoids à distance 1 du prédateur (tous ceux juste autour)
+    std::list<Humanoid *> getAround(Humanoid* predator);
+
+    // Retourne l'humain le plus proche
+    // cette methode peut être const
+    template <typename T>
+    Humanoid* getClosestTo(Humanoid* predator) ;
+
+
 };
 
 #endif //FIELD_H

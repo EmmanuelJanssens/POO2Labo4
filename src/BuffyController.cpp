@@ -3,13 +3,13 @@
 BuffyController::BuffyController(){}
 
 void BuffyController::start(BuffyView &view) {
-    Field f(15,15);
+    Field f(10,10);
 
     bool running = true;
 
     while(running){
 
-        view.display(f);
+        //view.display(f);
         Command inputUser = view.processInput();
         switch(inputUser){
             case QUIT:

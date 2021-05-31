@@ -1,6 +1,7 @@
 #include "../../include/Action/MoveAction.h"
 #include <iostream>
 #include <random>
+#include <map>
 #include "../../include/Entity/Humanoid.h"
 MoveAction::MoveAction(Humanoid* target, int distance):
     _distance(distance),
@@ -32,6 +33,10 @@ void MoveAction::random(Field& field  ){
     
     _endPos = temp;
     
+}
+
+void MoveAction::getCloserTo(Field &field) {
+
 }
 
 Cell* MoveAction::Up(Field& field){
@@ -106,3 +111,5 @@ Cell* MoveAction::DownRight(Field& field){
         t = field.getCellAt(newx,newy);
     return t;
 }
+
+

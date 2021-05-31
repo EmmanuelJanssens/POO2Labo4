@@ -68,6 +68,9 @@ public:
     Cell& operator=(const Cell& c);
 
     friend std::ostream& operator<<(std::ostream& op, const Cell& c);
+
+    // Retourne la distance entre deux cases, avec comme unité les cases
+    int distanceTo( Cell* c) const;
 };
 
 
