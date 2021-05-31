@@ -40,7 +40,9 @@ Cell& Cell::operator=(const Cell& c){
 
     return *this;
 }
-
+bool Cell::operator==(const Cell& c){
+    return _x == c._x && _y == c._y;
+}
 int Cell::distanceTo(Cell* c) const{
     return std::max(std::abs(c->_x - _x), std::abs(c->_y - _y));
 }

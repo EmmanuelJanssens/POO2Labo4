@@ -3,6 +3,9 @@
 
 class Hunter : public Humanoid{
 public:
-    void render(BuffyView& view) const override;
+
+    Hunter(const Cell& pos);
+
+    void render(const BuffyView& view) const override;
     void setAction(Field& field) override;
 };

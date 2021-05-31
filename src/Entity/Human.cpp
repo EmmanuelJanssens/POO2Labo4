@@ -4,8 +4,10 @@
 
 #include "../../include/Entity/Human.h"
 #include "../../include/Action/MoveAction.h"
+Human::Human(const Cell& pos):Humanoid(pos){
+}
 
-void Human::render(BuffyView &view) const {
+void Human::render(const BuffyView &view) const {
     view.display(*this);
 }
 

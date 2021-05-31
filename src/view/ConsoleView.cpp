@@ -27,7 +27,7 @@ void ConsoleView::display(const Vampire &vampire) const {
     cout << _VAMPIRE_SYMBOL;
 }
 
-void ConsoleView::display(const Field &field)  {
+void ConsoleView::display(const Field &field) const {
 
     SetConsoleTextAttribute(hConsole, 15); // set color console text
 
@@ -38,8 +38,10 @@ void ConsoleView::display(const Field &field)  {
     for(unsigned iLine = 0; iLine < field.getHeight(); iLine++){
         cout << _VERTICAL_BORDER;
         for(unsigned iCol = 0; iCol < field.getWidth(); iCol++){
-            if(false){
-                
+
+            Humanoid* toDraw = field.getHumanoidAt(Cell(iLine,iCol));
+            if(toDraw != nullptr){
+                toDraw->render(*this);
             } else {
                 cout << _EMPTY_SYMBOL;
             }

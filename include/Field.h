@@ -39,7 +39,7 @@ class Field{
 
     int getHeight() const;    
 
-
+     Humanoid* getHumanoidAt(const Cell& pos) const;
 
     // Retourne les humanoids à distance 1 du prédateur (tous ceux juste autour)
     //std::list<Humanoid *> getAround(Humanoid* predator);

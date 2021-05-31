@@ -13,6 +13,7 @@ class Humanoid : public Displayable{
     Action* _action;
     public:
     
+    Humanoid(const Cell& pos);
 
     /**
      * Set the action to be executed
@@ -41,7 +42,7 @@ class Humanoid : public Displayable{
 
     void move (const Cell& pos);
 
-    virtual void render(BuffyView& view) const = 0;
+    virtual void render(const BuffyView& view) const = 0;
 
     void dies();
 };

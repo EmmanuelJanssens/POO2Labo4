@@ -1,9 +1,10 @@
 #include "../../include/Entity/Vampire.h"
 #include "../../include/Action/MoveAction.h" // TO ERASE
 #include "../../include/Action/KillAction.h"
+Vampire::Vampire(const Cell& pos):Humanoid(pos){
+}
 
-
-void Vampire::render(BuffyView &view) const {
+void Vampire::render(const BuffyView &view) const {
     view.display(*this);
 }
 

@@ -6,6 +6,12 @@
 
 #include <iostream>
 
+Cell randomPos(int w, int h){
+        int rand_i = rand()%h;
+        int rand_j = rand()%w;
+
+        return Cell(rand_i,rand_j);
+}
 Field::Field(int w, int h)
     :_turn(0),_w(w),_h(h){
     //put entities on random positions
@@ -17,12 +23,12 @@ Field::Field(int w, int h)
     unsigned nbHumans = 5;
     unsigned nbVampires = 3;
     for(unsigned i = 0; i < nbHumans; i++){
-        _humanoids.push_back(new Human(/*Set random pos*/));
+        _humanoids.push_back(new Human(randomPos(w,h)));
     }
     for(unsigned i = 0; i < nbVampires; i++){
-        _humanoids.push_back(new Vampire(/*Set random pos*/));
+        _humanoids.push_back(new Vampire(randomPos(w,h)));
     }
-    _humanoids.push_back(new Hunter(/*Set random pos*/));
+    _humanoids.push_back(new Hunter(randomPos(w,h)));
 
 }
 
@@ -63,7 +69,13 @@ size_t Field::nextTurn(){
 }
 
 
+ Humanoid* Field::getHumanoidAt(const Cell& pos) const {
 
+    auto it = find_if(_humanoids.begin(), _humanoids.end(), [pos](Humanoid* h) {
+        return h->getPos() == pos;
+    });
+    return it != _humanoids.end() ? *it : nullptr;
+}
 int Field::getWidth() const{
     return _w;
 }

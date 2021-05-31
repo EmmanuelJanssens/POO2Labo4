@@ -35,7 +35,7 @@ public:
     void display(const Human& human) const override;
     void display(const Hunter& hunter) const override;
     void display(const Vampire& vampire) const override;
-    void display(const Field& field) override;
+    void display(const Field& field) const override;
     Command processInput() const override;
 };
 

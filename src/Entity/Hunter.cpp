@@ -1,7 +1,9 @@
 #include "../../include/Entity/Hunter.h"
 #include "../../include/Action/MoveAction.h" // TO ERASE
 
-void Hunter::render(BuffyView &view) const {
+Hunter::Hunter(const Cell& pos):Humanoid(pos){
+}
+void Hunter::render(const BuffyView &view) const {
     view.display(*this);
 }
 

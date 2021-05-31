@@ -3,6 +3,8 @@
 
 class Vampire : public Humanoid{
 public:
-    void render(BuffyView& view) const override;
+    Vampire(const Cell& pos);
+
+    void render(const BuffyView& view) const override;
     void setAction(Field& field) override;
 };
