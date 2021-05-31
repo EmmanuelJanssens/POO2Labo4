@@ -8,11 +8,11 @@ class Humanoid : public Displayable{
     
     bool _isAlive = true;
 
-    Cell* _position;
+    Cell _position;
 
     Action* _action;
     public:
-
+    
 
     /**
      * Set the action to be executed
@@ -37,10 +37,9 @@ class Humanoid : public Displayable{
      * */
     bool isAlive();
 
-    Cell* getPos();
+    Cell getPos();
 
-    void setPosition( Field& f,Cell* pos);
-    void move (Field& f,Cell* pos);
+    void move (const Cell& pos);
 
     virtual void render(BuffyView& view) const = 0;
 

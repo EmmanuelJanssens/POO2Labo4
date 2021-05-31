@@ -9,7 +9,7 @@ void BuffyController::start(BuffyView &view) {
 
     while(running){
 
-        //view.display(f);
+        view.display(f);
         Command inputUser = view.processInput();
         switch(inputUser){
             case QUIT:

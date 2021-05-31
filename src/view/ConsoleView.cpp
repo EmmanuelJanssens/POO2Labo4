@@ -38,14 +38,8 @@ void ConsoleView::display(const Field &field)  {
     for(unsigned iLine = 0; iLine < field.getHeight(); iLine++){
         cout << _VERTICAL_BORDER;
         for(unsigned iCol = 0; iCol < field.getWidth(); iCol++){
-            Cell* cellToDisplay = field.getCellAt(iLine, iCol);
-            cout << "(" << cellToDisplay->getX() << "," << cellToDisplay->getY() << ")"; // DEBUG, TO ERASE
-            if(cellToDisplay->hasEntity()){
-                // on display le dernier de la liste sur une cellule
-                // Par liaison dynamique, va appeler le render() de Human, Vampire ou Hunter
-                // qui va appeler la bonne surcharge de display dans la classe ConsoleView
-                (cellToDisplay->getEntitiesOnCell().back())->render(*this);
-                SetConsoleTextAttribute(hConsole, 15); // reset color console text
+            if(false){
+                
             } else {
                 cout << _EMPTY_SYMBOL;
             }

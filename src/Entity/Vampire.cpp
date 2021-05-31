@@ -10,10 +10,12 @@ void Vampire::render(BuffyView &view) const {
 void Vampire::setAction(Field &field) {
 
     // Si un Human est à côté :
-    bool foundHumanToAttack = false;
+    /*bool foundHumanToAttack = false;
     std::list<Humanoid *> humanoidsAround = field.getAround(this);
     if(!humanoidsAround.empty()){
         for(Humanoid* h : humanoidsAround){
+            if(h==nullptr)
+                continue;
             Human* humanToAttack = dynamic_cast<Human*>(h);
             if(humanToAttack != nullptr){
                 foundHumanToAttack = true;
@@ -36,6 +38,6 @@ void Vampire::setAction(Field &field) {
             Humanoid::cleanAndSetAction(action);
         //}
     }
-
+    */
 
 }

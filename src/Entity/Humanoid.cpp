@@ -4,8 +4,6 @@
 
 
 void Humanoid::cleanAndSetAction(Action* action){
-
-
     if(_action != nullptr){
         delete _action;
         _action = nullptr;
@@ -24,18 +22,12 @@ bool Humanoid::isAlive(){
     return _isAlive;
 }
 
-Cell* Humanoid::getPos(){
+Cell Humanoid::getPos(){
     return _position;
 }
 
-void Humanoid::setPosition(Field& f,Cell* pos){
+void Humanoid::move(const Cell& pos){
     _position = pos;
-    f.getCellAt(_position->getX(), _position->getY())->setEntity(this);
-
-}
-void Humanoid::move(Field& f,Cell* pos){
-    f.getCellAt(_position->getX(), _position->getY())->removeEntity(this);
-    setPosition(f,pos);
 }
 
 void Humanoid::dies() {

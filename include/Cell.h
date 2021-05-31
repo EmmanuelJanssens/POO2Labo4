@@ -16,8 +16,6 @@ class Cell{
     //y position
     int _y;
 
-    std::list<Humanoid*> _entitiesOnCell;
-
 public:
 
     /**
@@ -57,13 +55,8 @@ public:
 
     int getX() const;
     int getY() const;
-    const std::list<Humanoid *> &getEntitiesOnCell() const;
 
-    void removeEntity(Humanoid* h);
-    void removeAll();
     
-    void setEntity(Humanoid* h);
-    bool hasEntity() const;
 
     Cell& operator=(const Cell& c);
 

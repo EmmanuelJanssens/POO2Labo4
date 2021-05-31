@@ -6,7 +6,7 @@ void Hunter::render(BuffyView &view) const {
 }
 
 void Hunter::setAction(Field &field) {
-    MoveAction *action = new MoveAction(this,2);
+    MoveAction *action = new MoveAction(*this,2);
     action->random(field);
     Humanoid::cleanAndSetAction(action);
 }

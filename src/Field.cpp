@@ -7,50 +7,23 @@
 #include <iostream>
 
 Field::Field(int w, int h)
-    :_turn(0),_w(w),_h(h),_row(w,nullptr),_grid(h,_row){
-
+    :_turn(0),_w(w),_h(h){
+    //put entities on random positions
+   /* for(Humanoid* entity: _humanoids){
+        int rand_i = rand()%h;
+        int rand_j = rand()%w;
+    }
+*/
     unsigned nbHumans = 5;
     unsigned nbVampires = 3;
     for(unsigned i = 0; i < nbHumans; i++){
-        _humanoids.push_back(new Human());
+        _humanoids.push_back(new Human(/*Set random pos*/));
     }
     for(unsigned i = 0; i < nbVampires; i++){
-        _humanoids.push_back(new Vampire());
+        _humanoids.push_back(new Vampire(/*Set random pos*/));
     }
-    _humanoids.push_back(new Hunter());
+    _humanoids.push_back(new Hunter(/*Set random pos*/));
 
-
-    std::cout<<" Initialize \n";
-    //create empty grid
-    for(int i = 0; i < w; i++){
-        for(int j = 0; j < h; j++){
-            _grid.at(j).at(i) = new Cell(j,i);
-           // std::cout<< *_grid.at(j).at(i);
-        }
-        //std::cout<<std::endl;
-    }
-
-
-    //put entities on random positions
-    for(Humanoid* entity: _humanoids){
-
-        int rand_i = rand()%h;
-        int rand_j = rand()%w;
-        entity->setPosition(*this,_grid.at(rand_i).at(rand_j));
-
-    }
-
-    // DEBUG
-
-    std::cout<<" After init \n";
-
-    for(int i = 0; i < w; i++){
-        for(int j = 0; j < h; j++){
-
-            std::cout<< *_grid.at(j).at(i);
-        }
-        std::cout<<std::endl;
-    }
 }
 
 Field::~Field(){
@@ -59,63 +32,38 @@ Field::~Field(){
             delete h;
         h = nullptr;
     }
-
-    for(std::vector<Cell*> row: _grid){
-        for(Cell* c: row){
-            delete c;
-        }
-    }
 }
 size_t Field::nextTurn(){
     
     for(std::list<Humanoid*>::iterator it = _humanoids.begin(); it!= _humanoids.end(); it++){
-        //std::cout<<"Entity Current pos "<<*(*it)->getPos()<<std::endl;
+        //std::cout<<"Entity Current pos "<<(*it)->getPos()<<std::endl;
         (*it)->setAction(*this);
     }
 
     for(std::list<Humanoid*>::iterator it = _humanoids.begin(); it != _humanoids.end(); it++){
         (*it)->executeAction(*this);
-        //std::cout<<"Entity Current pos (After Move) "<<*(*it)->getPos()<<std::endl;
+       //std::cout<<"Entity Current pos (After Move) "<<(*it)->getPos()<<std::endl;
     }
 
     for(std::list<Humanoid*>::iterator it = _humanoids.begin(); it != _humanoids.end(); ){
+        //std::cout<<(*it)->getPos()<<"x ";
         if( !(*it)->isAlive()){
             Humanoid* toDelete = *it;
             it = _humanoids.erase(it);
             //_grid[toDelete->getPos()->getX()][toDelete->getPos()->getY()]->removeEntity(*it);
             // effacer de la case aussi
-
-
-
             delete toDelete;
         }
         else{
             ++it;
         }
     }
-    // DEBUG
-
-    std::cout<<" In Next Turn \n";
-
-    for(int i = 0; i < _w; i++){
-        for(int j = 0; j < _h; j++){
-
-            std::cout<< *_grid.at(j).at(i);
-        }
-        std::cout<<std::endl;
-    }
 
     return _turn++;
 }
 
 
-void Field::cleanCells(){
-    for(std::vector<Cell*> row : _grid){
-        for(Cell* c : row){
-            c->removeAll();
-        }
-    }
-}
+
 int Field::getWidth() const{
     return _w;
 }
@@ -124,11 +72,7 @@ int Field::getHeight() const{
     return _h;
 }
 
-Cell* Field::getCellAt(int i, int j) const {
-    return _grid.at(i).at(j);
-}
-
-std::list<Humanoid *> Field::getAround(Humanoid *predator) {
+/*std::list<Humanoid *> Field::getAround(Humanoid *predator) {
 
     int util[] = {-1, 0, 1};
     Cell* center = predator->getPos();
@@ -170,3 +114,4 @@ Humanoid *Field::getClosestTo(Humanoid* predator)  {
 
     return closestFound;
 }
+*/
