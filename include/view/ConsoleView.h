@@ -7,6 +7,14 @@
 #include <windows.h>
 #include <iostream>
 
+/**
+ * @brief Display in a windows console
+ * 
+ * @file ConsoleView.h
+ * @author Chhen Rosalie
+ * @author Janssens Emmanuel
+ * 
+ */
 class ConsoleView : public BuffyView{
 
 
@@ -30,12 +38,46 @@ class ConsoleView : public BuffyView{
 
 
 public:
+
+    /**
+     * @brief Construct a new Console View object
+     * 
+     */
     explicit ConsoleView();
 
+    /**
+     * @brief prints a human on the console
+     * 
+     * @param human 
+     */
     void display(const Human& human) const override;
+
+    /**
+     * @brief prints a hunter on the console
+     * 
+     * @param hunter 
+     */
     void display(const Hunter& hunter) const override;
+
+    /**
+     * @brief print a vampier on the console
+     * 
+     * @param vampire 
+     */
     void display(const Vampire& vampire) const override;
+
+    /**
+     * @brief print all the humanoids on the console as well as the outer bounds
+     * 
+     * @param field 
+     */
     void display(const Field& field) const override;
+
+    /**
+     * @brief handle simple user input
+     * 
+     * @return Command 
+     */
     Command processInput() const override;
 };
 

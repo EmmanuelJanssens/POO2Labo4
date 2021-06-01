@@ -23,7 +23,7 @@ void MoveAction::execute(Field& field) const {
         _target.move(_endPos);
 }
 
-void MoveAction::random(Field& field  ){
+void MoveAction::random(const Field& field  ){
     //std::cout<<"Random move YOLO\n";
 
     int randFuncId = rand()%8;
@@ -55,7 +55,7 @@ void MoveAction::getCloserTo(const Cell& destination, unsigned nbSteps){
     _endPos = Cell(position.getX() + xIncc, position.getY() + yIncc);
 }
 
-Cell MoveAction::Up(Field& field){
+Cell MoveAction::Up(const Field& field){
     Cell t = _target.getPos();
     int newx = _target.getPos().getX();
     int newy = _target.getPos().getY()+_distance;
@@ -64,7 +64,7 @@ Cell MoveAction::Up(Field& field){
         t = Cell(newx,newy);
     return t;
 }
-Cell MoveAction::Down(Field& field){
+Cell MoveAction::Down(const Field& field){
     Cell t = _target.getPos();
     int newx = _target.getPos().getX();
     int newy = _target.getPos().getY()-_distance;
@@ -73,7 +73,7 @@ Cell MoveAction::Down(Field& field){
         t =  Cell(newx,newy);
     return t;
 }
-Cell MoveAction::Left(Field& field){
+Cell MoveAction::Left( const Field& field){
     Cell t = _target.getPos();
     int newx = _target.getPos().getX()-_distance;
     int newy = _target.getPos().getY();
@@ -82,7 +82,7 @@ Cell MoveAction::Left(Field& field){
         t =  Cell(newx,newy);
     return t;
 }
-Cell MoveAction::Right(Field& field){
+Cell MoveAction::Right(const Field& field){
     Cell t = _target.getPos();
     int newx = _target.getPos().getX()+_distance;
     int newy = _target.getPos().getY();
@@ -91,7 +91,7 @@ Cell MoveAction::Right(Field& field){
         t =  Cell(newx,newy);
     return t;
 }
-Cell MoveAction::UpLeft(Field& field){
+Cell MoveAction::UpLeft(const Field& field){
     Cell t = _target.getPos();
     int newx = _target.getPos().getX()-_distance;
     int newy = _target.getPos().getY()+_distance;
@@ -100,7 +100,7 @@ Cell MoveAction::UpLeft(Field& field){
         t =  Cell(newx,newy);
     return t;
 }
-Cell MoveAction::UpRight(Field& field){
+Cell MoveAction::UpRight(const Field& field){
     Cell t = _target.getPos();
     int newx = _target.getPos().getX()+_distance;
     int newy = _target.getPos().getY()+_distance;
@@ -109,7 +109,7 @@ Cell MoveAction::UpRight(Field& field){
         t =  Cell(newx,newy);
     return t;
 }
-Cell MoveAction::DownLeft(Field& field){
+Cell MoveAction::DownLeft(const Field& field){
     Cell t = _target.getPos();    
     int newx = _target.getPos().getX()-_distance;
     int newy = _target.getPos().getY()-_distance;
@@ -118,7 +118,7 @@ Cell MoveAction::DownLeft(Field& field){
         t =  Cell(newx,newy);
     return t;
 }
-Cell MoveAction::DownRight(Field& field){
+Cell MoveAction::DownRight(const Field& field){
     Cell t = _target.getPos();    
     int newx = _target.getPos().getX()+_distance;
     int newy = _target.getPos().getY()-_distance;

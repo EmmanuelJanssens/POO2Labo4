@@ -14,10 +14,10 @@ Cell randomPos(int w, int h){
 }
 
 void BuffyController::start(BuffyView &view) {
-    Field f(10,10);
+    Field f(50,50);
     // Init entites
-    unsigned nbHumans = 5;
-    unsigned nbVampires = 3;
+    unsigned nbHumans = 20;
+    unsigned nbVampires = 10;
     std::list<Humanoid*> humanoidsToInit;
     for(unsigned i = 0; i < nbHumans; i++){
         humanoidsToInit.push_back(new Human(randomPos(f.getWidth(),f.getHeight())));

@@ -15,8 +15,6 @@ Cell::Cell(const Cell& c){
 Cell::Cell(int x, int y){
     setCoord(x,y);
 }
-Cell::Cell(int x, int y, Humanoid* h):_x(x),_y(y){
-}
 void Cell::setCoord(int x, int y){
     _x = x;
     _y = y;
