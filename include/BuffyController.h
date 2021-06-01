@@ -17,8 +17,8 @@ class BuffyView;
  */
 class BuffyController {
 
-    static const unsigned FIELD_WIDTH = 30;
-    static const unsigned FIELD_HEIGHT = 30;
+    static const unsigned FIELD_WIDTH = 50;
+    static const unsigned FIELD_HEIGHT = 50;
 
     static const unsigned NB_HUMANS = 20;
     static const unsigned NB_VAMPIRES = 10;

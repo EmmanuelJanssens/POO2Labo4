@@ -76,7 +76,7 @@ Command ConsoleView::processInput() const{
                     valid = true;
                     command = STATISTICS;
                     break;
-                case _NEXT_KEY_1:
+                case _NEXT_KEY:
                     valid = true;
                     command = NEXT;
                     break;

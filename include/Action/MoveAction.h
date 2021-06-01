@@ -22,7 +22,7 @@ class MoveAction : public Action{
     //target to move
     Humanoid& _target;
 
-    //position to be acheived
+    //position to reach
     Cell _endPos;
 
     //distance to be travelled
@@ -114,27 +114,31 @@ class MoveAction : public Action{
 
     /**
      * @brief Constructor
+     *
      * @param targetPos the target to be modified
      * */
     MoveAction(Humanoid& targetPos, int distance);
     
     /**
      * @brief Movement's own action
+     *
      * @param field in what context we should move
      * */
     void execute(Field& field) const override;
 
     /**
-     * brief Calculate a random movement in the current context
+     * @brief Calculate a random movement in the current context
+     *
      * @param field current context
      * @param radius to wich extent we can move
      * */
     void random(const Field& field );
 
     /**
-     * @brief Get the Closer To object
+     * @brief Calculate a movement which get the moving target closer to
+     * a position, the movement has nbSteps as distance
      * 
-     * @param destination 
+     * @param destination The position to get closer to
      * @param nbSteps 
      */
     void getCloserTo(const Cell& destination, unsigned nbSteps);

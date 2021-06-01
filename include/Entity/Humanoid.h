@@ -84,7 +84,7 @@ class Humanoid : public Displayable{
      * 
      * @param view 
      */
-    virtual void render(const BuffyView& view) const {}
+    virtual void render(const BuffyView& view) const = 0;
 
     /**
      * @brief dies sets _isAlive to false

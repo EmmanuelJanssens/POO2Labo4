@@ -34,7 +34,7 @@ class ConsoleView : public BuffyView{
 
     static const char _QUIT_KEY = 'q';
     static const char _STATISTICS_KEY = 's';
-    static const char _NEXT_KEY_1 = 'n';
+    static const char _NEXT_KEY = 'n';
 
 
 public:

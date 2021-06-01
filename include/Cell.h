@@ -42,13 +42,11 @@ public:
      * */
     Cell(int x, int y);
 
-
     /**
      * Set the coordinates
      * @param x x coordinates
      * @param y y coordinates
      * */
-
     void setCoord(int x, int y);
     
     /**
@@ -71,7 +69,6 @@ public:
      */
     int getY() const;
 
-    
     /**
      * @brief Affectation operator
      * 
@@ -99,7 +96,7 @@ public:
     friend std::ostream& operator<<(std::ostream& op, const Cell& c);
 
     /**
-     * @brief  Retursn distance between two cells, with cells as units
+     * @brief  Returns distance between two cells, with cells as units
      * 
      * @param c 
      * @return int 

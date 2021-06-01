@@ -76,11 +76,12 @@ size_t Field::nextTurn(){
     });
     return it != _humanoids.end() ? *it : nullptr;
 }
-int Field::getWidth() const{
+
+unsigned Field::getWidth() const{
     return _w;
 }
 
-int Field::getHeight() const{
+unsigned Field::getHeight() const{
     return _h;
 }
 

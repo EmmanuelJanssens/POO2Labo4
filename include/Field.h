@@ -56,18 +56,16 @@ class Field{
     /**
      * @brief Get the field width
      * 
-     * @return int 
+     * @return unsigned
      */
-    int getWidth() const;
-
-
+    unsigned getWidth() const;
 
     /**
      * @brief Get Field height
      * 
-     * @return int 
+     * @return unsigned
      */
-    int getHeight() const;    
+    unsigned getHeight() const;
 
     /**
      * @brief Get the Humanoid At a certain position
@@ -84,8 +82,6 @@ class Field{
      */
      void addHumanoid(Humanoid* h);
 
-
-
     // Retourne l'humain le plus proche
     Human* getClosestHuman(const Vampire& predator) const;
 
@@ -97,6 +93,9 @@ class Field{
     template<typename T>
     Humanoid* getClosestHumanoidTo(const Humanoid &predator) const;
 
+    /**
+     * @brief Clear all humanoids on field
+     * */
     void resetField();
 
 };

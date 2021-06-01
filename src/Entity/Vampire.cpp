@@ -16,6 +16,7 @@ void Vampire::render(const BuffyView &view) const {
 void Vampire::setAction(Field &field) {
 
     Human* humanFound = field.getClosestHuman(*this);
+    //Humanoid* humanFound = field.getClosestHumanoidTo<Human>(*this);
     if(humanFound != nullptr){
         // kill
         // If the human is close enough (1 cell or 0 cell away from the vampire), the vampire kills him
