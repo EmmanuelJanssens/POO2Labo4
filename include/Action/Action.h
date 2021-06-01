@@ -20,5 +20,6 @@ class Action{
      * @param field current field on wich the action will be executed
      * */
     virtual void execute(Field& field) const = 0;
+    virtual ~Action() = default;
 };
 #endif //ACTION_H

@@ -5,7 +5,11 @@
 #include <vector>
 #include "Cell.h"
 
+
 class Humanoid;
+class Human;
+class Vampire;
+class Hunter;
 class Field{
 
     //current turn id
@@ -34,6 +38,8 @@ class Field{
      * */
     size_t nextTurn();
 
+    size_t getTurn() const;
+
 
     int getWidth() const;
 
@@ -41,14 +47,18 @@ class Field{
 
      Humanoid* getHumanoidAt(const Cell& pos) const;
 
+     void addHumanoid(Humanoid* h);
+
     // Retourne les humanoids à distance 1 du prédateur (tous ceux juste autour)
     //std::list<Humanoid *> getAround(Humanoid* predator);
 
     // Retourne l'humain le plus proche
-    // cette methode peut être const
-    //template <typename T>
-    //Humanoid* getClosestTo(Humanoid* predator) ;
+    Human* getClosestHuman(const Vampire& predator) const;
 
+    // Retourne l'humain le plus proche
+    Vampire* getClosestVampire(const Hunter& predator) const;
+
+    void initHumanoids(const std::list<Humanoid*>& humanoids);
 
 };
 

@@ -35,8 +35,24 @@ void MoveAction::random(Field& field  ){
     
 }
 
-void MoveAction::getCloserTo(Field &field) {
+void MoveAction::getCloserTo(const Cell& destination, unsigned nbSteps){
+    Cell position = _target.getPos();
+    int xIncc = 0, yIncc = 0;
 
+    for(unsigned i = 0; i < nbSteps; i++){
+        int dx = destination.getX() - (position.getX()+xIncc);
+        int dy = destination.getY() - (position.getY()+yIncc);
+
+        if(dx > 0)
+            xIncc++;
+        if(dx < 0)
+            xIncc--;
+        if(dy > 0)
+            yIncc++;
+        if(dy < 0)
+            yIncc--;
+    }
+    _endPos = Cell(position.getX() + xIncc, position.getY() + yIncc);
 }
 
 Cell MoveAction::Up(Field& field){

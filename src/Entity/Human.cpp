@@ -3,6 +3,7 @@
 //
 
 #include "../../include/Entity/Human.h"
+#include "../../include/Entity/Vampire.h"
 #include "../../include/Action/MoveAction.h"
 Human::Human(const Cell& pos):Humanoid(pos){
 }
@@ -16,4 +17,10 @@ void Human::setAction(Field& field){
     MoveAction *action = new MoveAction(*this,1);
     action->random(field);
     Humanoid::cleanAndSetAction(action);
+}
+
+Vampire *Human::getVampirized() {
+    // Controle si il est deja mort ?
+    dies();
+    return new Vampire(getPos());
 }

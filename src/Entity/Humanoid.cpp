@@ -4,8 +4,7 @@
 
 
 
-Humanoid::Humanoid(const Cell& pos):_position(pos){
-}
+Humanoid::Humanoid(const Cell& pos):_position(pos), _action(nullptr){}
 
 void Humanoid::cleanAndSetAction(Action* action){
     if(_action != nullptr){
@@ -26,7 +25,7 @@ bool Humanoid::isAlive(){
     return _isAlive;
 }
 
-Cell Humanoid::getPos(){
+Cell Humanoid::getPos()const{
     return _position;
 }
 
@@ -36,4 +35,10 @@ void Humanoid::move(const Cell& pos){
 
 void Humanoid::dies() {
     _isAlive = false;
+}
+
+Humanoid::~Humanoid() {
+    if(_action != nullptr){
+        delete _action;
+    }
 }

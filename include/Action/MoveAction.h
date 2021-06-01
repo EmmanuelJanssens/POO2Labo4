@@ -56,7 +56,7 @@ class MoveAction : public Action{
      * @param radius to wich extent we can move
      * */
     void random(Field& field );
-    void getCloserTo(Field& field);
+    void getCloserTo(const Cell& destination, unsigned nbSteps);
 
 
 };

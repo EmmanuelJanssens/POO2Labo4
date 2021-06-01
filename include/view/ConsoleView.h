@@ -12,7 +12,7 @@ class ConsoleView : public BuffyView{
 
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     static const unsigned _VAMPIRE_COLOR = FOREGROUND_BLUE;
-    static const unsigned _HUMAN_COLOR = 13;//FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE;
+    static const unsigned _HUMAN_COLOR = 13;
     static const unsigned _HUNTER_COLOR = 6;
 
     static const char _VAMPIRE_SYMBOL = 'V';

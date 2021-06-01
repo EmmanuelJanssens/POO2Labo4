@@ -1,5 +1,7 @@
-#include "../../include/Entity/Human.h"
+//#include "../../include/Entity/Human.h"
 #include "../view/BuffyView.h"
+#include "../Field.h"
+#include "Humanoid.h"
 
 class Vampire : public Humanoid{
 public:

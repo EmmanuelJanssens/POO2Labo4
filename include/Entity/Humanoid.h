@@ -38,13 +38,15 @@ class Humanoid : public Displayable{
      * */
     bool isAlive();
 
-    Cell getPos();
+    Cell getPos() const;
 
     void move (const Cell& pos);
 
     virtual void render(const BuffyView& view) const = 0;
 
     void dies();
+
+    virtual ~Humanoid();
 };
 
 #endif //HUMANOID_H

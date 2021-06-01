@@ -1,6 +1,11 @@
+#include "../../include/Field.h"
 #include "../../include/Entity/Vampire.h"
 #include "../../include/Action/MoveAction.h" // TO ERASE
 #include "../../include/Action/KillAction.h"
+#include "../../include/Entity/Human.h"
+#include "../../include/Action/VampirizeAction.h"
+
+
 Vampire::Vampire(const Cell& pos):Humanoid(pos){
 }
 
@@ -10,35 +15,29 @@ void Vampire::render(const BuffyView &view) const {
 
 void Vampire::setAction(Field &field) {
 
-    // Si un Human est à côté :
-    /*bool foundHumanToAttack = false;
-    std::list<Humanoid *> humanoidsAround = field.getAround(this);
-    if(!humanoidsAround.empty()){
-        for(Humanoid* h : humanoidsAround){
-            if(h==nullptr)
-                continue;
-            Human* humanToAttack = dynamic_cast<Human*>(h);
-            if(humanToAttack != nullptr){
-                foundHumanToAttack = true;
-                KillAction *action = new KillAction(this, humanToAttack);
-                action->setEndPos(humanToAttack->getPos());
-                std::cout << "VAMPIRE:: KILL ACTION CREATED" <<std::endl;
+    Human* humanFound = field.getClosestHuman(*this);
+    if(humanFound != nullptr){
+        // kill
+        // If the human is close enough (1 cell or 0 cell away from the vampire), the vampire kills him
+        if(humanFound->getPos().distanceTo(getPos()) <= 1){
+            int randKillVampirize = rand()%2;
+            if(randKillVampirize == 0){
+                KillAction *action = new KillAction(humanFound);
+                Humanoid::cleanAndSetAction(action);
+            } else if(randKillVampirize == 1){
+                VampirizeAction *action = new VampirizeAction(humanFound);
                 Humanoid::cleanAndSetAction(action);
             }
-        }
-    }
 
-    // Sinon bouge en direction d'un Human
-    bool foundHumanToHunt = false;
-    //Human* humanToHunt = (Human*) field.getClosestTo<Human>(this);
-    if(!foundHumanToAttack){
-        //if(humanToHunt != nullptr){
-            foundHumanToHunt = true;
-            MoveAction *action = new MoveAction(this,1);
-            action->random(field);
+        } else {
+        // Move in the direction of the human
+            MoveAction *action = new MoveAction(*this, 1);
+            action->getCloserTo(humanFound->getPos(), 1);
             Humanoid::cleanAndSetAction(action);
-        //}
+        }
+    } else {
+        // If there is no more humans, no action is set to vampires (don't move)
+        Humanoid::cleanAndSetAction(nullptr);
     }
-    */
 
 }

@@ -42,6 +42,7 @@ void ConsoleView::display(const Field &field) const {
             Humanoid* toDraw = field.getHumanoidAt(Cell(iLine,iCol));
             if(toDraw != nullptr){
                 toDraw->render(*this);
+                SetConsoleTextAttribute(hConsole, 15); // reset color console text
             } else {
                 cout << _EMPTY_SYMBOL;
             }
@@ -49,7 +50,7 @@ void ConsoleView::display(const Field &field) const {
         cout << _VERTICAL_BORDER << "\n";
     }
     cout << _CORNER << horizontal_border << _CORNER << endl;
-
+    cout<< "[" << field.getTurn() << "] ";
 }
 
 

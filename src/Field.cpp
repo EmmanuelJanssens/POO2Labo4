@@ -6,12 +6,7 @@
 
 #include <iostream>
 
-Cell randomPos(int w, int h){
-        int rand_i = rand()%h;
-        int rand_j = rand()%w;
 
-        return Cell(rand_i,rand_j);
-}
 Field::Field(int w, int h)
     :_turn(0),_w(w),_h(h){
     //put entities on random positions
@@ -19,7 +14,7 @@ Field::Field(int w, int h)
         int rand_i = rand()%h;
         int rand_j = rand()%w;
     }
-*/
+
     unsigned nbHumans = 5;
     unsigned nbVampires = 3;
     for(unsigned i = 0; i < nbHumans; i++){
@@ -29,7 +24,11 @@ Field::Field(int w, int h)
         _humanoids.push_back(new Vampire(randomPos(w,h)));
     }
     _humanoids.push_back(new Hunter(randomPos(w,h)));
+    */
+}
 
+void Field::initHumanoids(const std::list<Humanoid *>& humanoids) {
+    _humanoids = humanoids;
 }
 
 Field::~Field(){
@@ -45,6 +44,7 @@ size_t Field::nextTurn(){
         //std::cout<<"Entity Current pos "<<(*it)->getPos()<<std::endl;
         (*it)->setAction(*this);
     }
+
 
     for(std::list<Humanoid*>::iterator it = _humanoids.begin(); it != _humanoids.end(); it++){
         (*it)->executeAction(*this);
@@ -84,46 +84,46 @@ int Field::getHeight() const{
     return _h;
 }
 
-/*std::list<Humanoid *> Field::getAround(Humanoid *predator) {
-
-    int util[] = {-1, 0, 1};
-    Cell* center = predator->getPos();
-    std::list<Humanoid *> results;
-
-    for(int u : util){
-        for(int v : util){
-            int xToCheck = center->getX() + u;
-            int yToCheck = center->getY() + v;
-            // pad depasser les bords et pas soi-meme
-            if(xToCheck >= 0 && xToCheck < _w && yToCheck >= 0 && yToCheck < _h && !(u == 0 && v == 0)) {
-                std::list<Humanoid *> humanoidsToCheck = getCellAt(xToCheck, yToCheck)->getEntitiesOnCell();
-                for(Humanoid* h : humanoidsToCheck){
-                    results.push_back(h);
-                }
-            }
-        }
-    }
-
-    return results;
-}
-
-
-template<typename T>
-Humanoid *Field::getClosestTo(Humanoid* predator)  {
-    Humanoid* closestFound = nullptr;
-
+Human *Field::getClosestHuman(const Vampire &predator) const {
+    Human* found = nullptr;
     int minimalDistance = std::numeric_limits<int>:: max();
 
     for(Humanoid* h : _humanoids){
-        if(dynamic_cast<T*>(h)){
-            int newDistance = predator->getPos()->distanceTo(h->getPos());
+        if(dynamic_cast<Human*>(h)){
+            int newDistance = predator.getPos().distanceTo(h->getPos());
             if(newDistance < minimalDistance){
                 minimalDistance = newDistance;
-                closestFound = h;
+                found = (Human*)h;
             }
         }
     }
 
-    return closestFound;
+    return found;
 }
-*/
+
+Vampire *Field::getClosestVampire(const Hunter &predator) const {
+    Vampire* found = nullptr;
+    int minimalDistance = std::numeric_limits<int>:: max();
+
+    for(Humanoid* h : _humanoids){
+        if(dynamic_cast<Vampire*>(h)){
+            int newDistance = predator.getPos().distanceTo(h->getPos());
+            if(newDistance < minimalDistance){
+                minimalDistance = newDistance;
+                found = (Vampire*)h;
+            }
+        }
+    }
+
+    return found;
+}
+
+void Field::addHumanoid(Humanoid *h) {
+    if(h != nullptr){
+        _humanoids.push_back(h);
+    }
+}
+
+size_t Field::getTurn() const {
+    return _turn;
+}

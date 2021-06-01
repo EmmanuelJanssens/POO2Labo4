@@ -11,6 +11,8 @@ public:
 
     void render(const BuffyView& view) const override;
     void setAction(Field& field) override;
+    Vampire* getVampirized();
+    ~Human() = default;
 };
 
 
