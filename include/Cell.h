@@ -6,10 +6,16 @@
 #include <iostream>
 
 
-class Humanoid;
-
+/**
+ * @brief Represents coordinates onto a 2D plane
+ * 
+ * @file Cell.h
+ * @author Chhen Rosalie
+ * @author Janssens Emmanuel
+ * 
+ */
 class Cell{
-    protected:
+
     //x position
     int _x;
 
@@ -36,7 +42,6 @@ public:
      * */
     Cell(int x, int y);
 
-    Cell(int x, int y, Humanoid* h);
 
     /**
      * Set the coordinates
@@ -52,19 +57,53 @@ public:
      * */
     void setCoord(const Cell& c);
 
-
+    /**
+     * @brief get X position
+     * 
+     * @return int 
+     */
     int getX() const;
+
+    /**
+     * @brief get Y position
+     * 
+     * @return int 
+     */
     int getY() const;
 
     
-
+    /**
+     * @brief Affectation operator
+     * 
+     * @param c 
+     * @return Cell& 
+     */
     Cell& operator=(const Cell& c);
 
+    /**
+     * @brief equal comparator operator
+     * 
+     * @param c 
+     * @return true 
+     * @return false 
+     */
     bool operator==(const Cell& c);
     
+    /**
+     * @brief Display a cell (mainly for debug purposes)
+     * 
+     * @param op 
+     * @param c 
+     * @return std::ostream& 
+     */
     friend std::ostream& operator<<(std::ostream& op, const Cell& c);
 
-    // Retourne la distance entre deux cases, avec comme unité les cases
+    /**
+     * @brief  Retursn distance between two cells, with cells as units
+     * 
+     * @param c 
+     * @return int 
+     */
     int distanceTo(const Cell& c) const;
 };
 

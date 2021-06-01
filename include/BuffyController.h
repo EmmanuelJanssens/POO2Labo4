@@ -6,8 +6,16 @@
 #include "view/ConsoleView.h"
 
 class BuffyView;
+
+/**
+ * @brief Main application controller
+ * 
+ * @file BuffyController.h
+ * @author Chhen Rosalie
+ * @author Janssens Emmanuel
+ * 
+ */
 class BuffyController {
-private:
 
     static const unsigned FIELD_WIDTH = 30;
     static const unsigned FIELD_HEIGHT = 30;
@@ -19,7 +27,17 @@ private:
 
 public:
 
+    /**
+     * @brief Construct a new Buffy Controller object
+     * 
+     */
     BuffyController();
+
+    /**
+     * @brief start the application
+     * 
+     * @param view 
+     */
     void start(BuffyView& view);
     void initHumanoids(Field& field);
     void statistics();

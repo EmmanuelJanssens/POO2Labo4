@@ -5,11 +5,19 @@
 #include <vector>
 #include "Cell.h"
 
-
+/**class predeclarations**/
 class Humanoid;
 class Human;
 class Vampire;
 class Hunter;
+
+/**
+ * @brief Main field on wich entities will move and behave
+ * 
+ * @file Field.h
+ * @author Chhen Rosalie
+ * @author Janssens Emmanuel
+ */
 class Field{
 
     //current turn id
@@ -38,19 +46,45 @@ class Field{
      * */
     size_t nextTurn();
 
+    /**
+     * @brief return current  turns
+     * 
+     * @return size_t 
+     */
     size_t getTurn() const;
 
-
+    /**
+     * @brief Get the field width
+     * 
+     * @return int 
+     */
     int getWidth() const;
 
+
+
+    /**
+     * @brief Get Field height
+     * 
+     * @return int 
+     */
     int getHeight() const;    
 
+    /**
+     * @brief Get the Humanoid At a certain position
+     * 
+     * @param pos 
+     * @return Humanoid* 
+     */
      Humanoid* getHumanoidAt(const Cell& pos) const;
 
+    /**
+     * @brief Add an entity onto the field
+     * 
+     * @param h 
+     */
      void addHumanoid(Humanoid* h);
 
-    // Retourne les humanoids à distance 1 du prédateur (tous ceux juste autour)
-    //std::list<Humanoid *> getAround(Humanoid* predator);
+
 
     // Retourne l'humain le plus proche
     Human* getClosestHuman(const Vampire& predator) const;

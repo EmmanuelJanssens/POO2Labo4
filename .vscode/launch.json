@@ -5,18 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(Windows) Launch",
-            "type": "cppvsdbg",
+            
+            "name": "C++ Launch",
+            "type": "cppdbg",
             "request": "launch",
-            "program": "Labo4.exe",
-            "args": [],
-            "stopAtEntry": true,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "console": "externalTerminal",
-            "MIMode": "gdb",
-            "miDebuggerPath": "C:\\MINGW\\mingw32\\bin\\gdb.exe",
-
-        }
+            "program": "${workspaceFolder}/Labo4.exe",
+            "environment": [{ "name": "config", "value": "Debug" }],
+            "cwd": "${workspaceFolder}"
+        } 
+        
     ]
 }
