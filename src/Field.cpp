@@ -85,39 +85,6 @@ unsigned Field::getHeight() const{
     return _h;
 }
 
-Human *Field::getClosestHuman(const Vampire &predator) const {
-    Human* found = nullptr;
-    int minimalDistance = std::numeric_limits<int>:: max();
-
-    for(Humanoid* h : _humanoids){
-        if(dynamic_cast<Human*>(h)){
-            int newDistance = predator.getPos().distanceTo(h->getPos());
-            if(newDistance < minimalDistance){
-                minimalDistance = newDistance;
-                found = (Human*)h;
-            }
-        }
-    }
-
-    return found;
-}
-
-Vampire *Field::getClosestVampire(const Hunter &predator) const {
-    Vampire* found = nullptr;
-    int minimalDistance = std::numeric_limits<int>:: max();
-
-    for(Humanoid* h : _humanoids){
-        if(dynamic_cast<Vampire*>(h)){
-            int newDistance = predator.getPos().distanceTo(h->getPos());
-            if(newDistance < minimalDistance){
-                minimalDistance = newDistance;
-                found = (Vampire*)h;
-            }
-        }
-    }
-
-    return found;
-}
 
 void Field::addHumanoid(Humanoid *h) {
     if(h != nullptr){

@@ -5,6 +5,7 @@
 #include "../../include/Entity/Human.h"
 #include "../../include/Entity/Vampire.h"
 #include "../../include/Action/MoveAction.h"
+#include "../../include/view/BuffyView.h"
 Human::Human(const Cell& pos):Humanoid(pos){
 }
 

@@ -12,17 +12,17 @@ using namespace std;
 
 ConsoleView::ConsoleView() {}
 
-void ConsoleView::display(const Human &human) const {
+void ConsoleView::display(const Human &) const {
     SetConsoleTextAttribute(hConsole, _HUMAN_COLOR);
     cout << _HUMAN_SYMBOL;
 }
 
-void ConsoleView::display(const Hunter &hunter) const {
+void ConsoleView::display(const Hunter &) const {
     SetConsoleTextAttribute(hConsole, _HUNTER_COLOR);
     cout << _HUNTER_SYMBOL;
 }
 
-void ConsoleView::display(const Vampire &vampire) const {
+void ConsoleView::display(const Vampire &) const {
     SetConsoleTextAttribute(hConsole, _VAMPIRE_COLOR);
     cout << _VAMPIRE_SYMBOL;
 }

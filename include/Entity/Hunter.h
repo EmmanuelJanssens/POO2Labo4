@@ -1,7 +1,6 @@
 #ifndef HUNTER_H
 #define HUNTER_H
 #include "../../include/Entity/Humanoid.h"
-#include "../view/BuffyView.h"
 
 /**
  * @brief Represent a hunter

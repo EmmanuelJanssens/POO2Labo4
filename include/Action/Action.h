@@ -1,8 +1,9 @@
 #ifndef ACTION_H
 #define ACTION_H
 
-#include "../Field.h"
 
+
+class Field;
 /**
  * @brief Action interface
  * 

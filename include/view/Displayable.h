@@ -16,6 +16,7 @@ public:
      * 
      * @param view 
      */
-    virtual void render(const BuffyView& view) const = 0;};
+    virtual void render(const BuffyView& view) const = 0;
+};
 
 #endif //POO2LABO4_DISPLAYABLE_H

@@ -1,8 +1,9 @@
-#ifndef POO2LABO4_FIELDGENERICMETHOD_H
-#define POO2LABO4_FIELDGENERICMETHOD_H
 
-
+#include "Field.h"
 #include "Entity/Humanoid.h"
+#include "Entity/Hunter.h"
+#include "Entity/Vampire.h"
+#include "Entity/Human.h"
 
 template<typename T>
 Humanoid* Field::getClosestHumanoidTo(const Humanoid &predator) const {
@@ -22,4 +23,3 @@ Humanoid* Field::getClosestHumanoidTo(const Humanoid &predator) const {
     return found;
 }
 
-#endif //POO2LABO4_FIELDGENERICMETHOD_H

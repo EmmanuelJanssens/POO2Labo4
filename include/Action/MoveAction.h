@@ -5,7 +5,7 @@
 #include "../Cell.h"
 #include <vector>
 
-
+class Humanoid;
 /**
  * @brief Implements simple movement for a Humanoid
  *              - Random movement
@@ -30,7 +30,7 @@ class MoveAction : public Action{
 
 
     //
-    typedef Cell(MoveAction::*RandomMove)(const Field& field);
+    typedef void(MoveAction::*RandomMove)(const Field& field);
 
     //array of possible moves
     RandomMove _rmove[8];
@@ -48,67 +48,62 @@ class MoveAction : public Action{
      * @brief Move up
      * 
      * @param field 
-     * @return Cell 
      */
-    Cell Up(const Field& field);
+    void Up(const Field& field);
 
     /**
      * @brief Move down
      * 
      * @param field 
-     * @return Cell 
      */
-    Cell Down(const Field& field);
+    void Down(const Field& field);
 
     /**
      * @brief Move Left
      * 
      * @param field 
-     * @return Cell 
      */
-    Cell Left(const Field& field);
+    void Left(const Field& field);
 
     /**
      * @brief Move Right
      * 
      * @param field 
-     * @return Cell 
      */
-    Cell Right(const Field& field);
+    void Right(const Field& field);
 
     /**
      * @brief Move Up-Right
      * 
      * @param field 
-     * @return Cell 
      */
-    Cell UpRight(const Field& field);
+    void UpRight(const Field& field);
 
     /**
      * @brief Move Down-right
      * 
      * @param field 
-     * @return Cell 
      */
-    Cell DownRight(const Field& field);
+    void DownRight(const Field& field);
 
     /**
      * @brief Move Up-left
      * 
      * @param field 
-     * @return Cell 
      */
-    Cell UpLeft(const Field& field);
+    void UpLeft(const Field& field);
 
     /**
      * @brief Move Down Left
      * 
      * @param field 
-     * @return Cell 
      */
-    Cell DownLeft(const Field& field);
+    void DownLeft(const Field& field);
 
 
+    bool isInBounds(const Field& field, const Cell& c);
+
+    void setEndPos(const Field& field,const Cell& c);
 
     public:
 

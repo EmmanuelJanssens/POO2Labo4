@@ -4,12 +4,14 @@
 #include "../include/Entity/Vampire.h"
 #include "../include/Entity/Human.h"
 
+Cell randomPos(unsigned w, unsigned h);
+
 BuffyController::BuffyController(){}
 
 
-Cell randomPos(int w, int h){
-    int rand_i = rand()%h;
-    int rand_j = rand()%w;
+Cell randomPos(unsigned w, unsigned h){
+    unsigned rand_i = rand()%h;
+    unsigned rand_j = rand()%w;
 
     return Cell(rand_i,rand_j);
 }
@@ -50,6 +52,7 @@ void BuffyController::start(BuffyView &view) {
 
 void BuffyController::statistics()  {
     Field simulation(FIELD_WIDTH, FIELD_HEIGHT);
+
     Hunter toCheckVampires(Cell(0,0));
     Vampire toCheckHumans(Cell(0,0));
 
@@ -59,16 +62,16 @@ void BuffyController::statistics()  {
         simulation.resetField();
         initHumanoids(simulation);
 
-        while(simulation.getClosestVampire(toCheckVampires) != nullptr){
+        while(simulation.getClosestHumanoidTo<Vampire>(toCheckVampires) != nullptr){
             simulation.nextTurn();
         }
 
-        if(simulation.getClosestHuman(toCheckHumans) != nullptr){
+        if(simulation.getClosestHumanoidTo<Human>(toCheckHumans) != nullptr){
             nbBuffySuccess++;
         }
     }
 
-    double percentBuffySuccess = ((double) nbBuffySuccess * 100) / NB_SIMULAITONS;
+    double percentBuffySuccess = (static_cast<double> (nbBuffySuccess) * 100) / NB_SIMULAITONS;
     std::cout << "nbBuffySuccess : " << nbBuffySuccess << std::endl;
 
     std::cout << "Pourcentage de succes de Buffy : " << percentBuffySuccess << "%" << std::endl;

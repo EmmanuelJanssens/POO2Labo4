@@ -4,7 +4,8 @@
 #include "../../include/Action/KillAction.h"
 #include "../../include/Entity/Human.h"
 #include "../../include/Action/VampirizeAction.h"
-
+#include "../../include/Field.h"
+#include "../../include/view/BuffyView.h"
 
 Vampire::Vampire(const Cell& pos):Humanoid(pos){
 }
@@ -15,7 +16,7 @@ void Vampire::render(const BuffyView &view) const {
 
 void Vampire::setAction(Field &field) {
 
-    Human* humanFound = field.getClosestHuman(*this);
+    Humanoid* humanFound = field.getClosestHumanoidTo<Human>(*this);
     //Humanoid* humanFound = field.getClosestHumanoidTo<Human>(*this);
     if(humanFound != nullptr){
         // kill
@@ -26,7 +27,7 @@ void Vampire::setAction(Field &field) {
                 KillAction *action = new KillAction(humanFound);
                 Humanoid::cleanAndSetAction(action);
             } else if(randKillVampirize == 1){
-                VampirizeAction *action = new VampirizeAction(humanFound);
+                VampirizeAction *action = new VampirizeAction(static_cast<Human*>(humanFound));
                 Humanoid::cleanAndSetAction(action);
             }
 

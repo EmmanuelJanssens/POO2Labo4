@@ -1,5 +1,8 @@
-#include "MoveAction.h"
+#ifndef KILLACTION_H
+#define KILLACTION_H
+#include "Action.h"
 
+class Humanoid;
 /**
  * @brief Kills an humanoid
  * 
@@ -30,3 +33,4 @@ public:
     void execute(Field& field) const override;
 
 };
+#endif

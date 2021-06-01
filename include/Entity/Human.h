@@ -2,8 +2,8 @@
 #define POO2LABO4_HUMAN_H
 
 #include "Humanoid.h"
-#include "../view/BuffyView.h"
 
+class Vampire;
 /**
  * @brief Represents a simple human that moves randomly accross the field
  * 

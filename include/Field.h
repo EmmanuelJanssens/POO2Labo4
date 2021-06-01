@@ -7,9 +7,7 @@
 
 /**class predeclarations**/
 class Humanoid;
-class Human;
-class Vampire;
-class Hunter;
+
 
 /**
  * @brief Main field on wich entities will move and behave
@@ -82,14 +80,6 @@ class Field{
      */
      void addHumanoid(Humanoid* h);
 
-    // Retourne l'humain le plus proche
-    Human* getClosestHuman(const Vampire& predator) const;
-
-    // Retourne l'humain le plus proche
-    Vampire* getClosestVampire(const Hunter& predator) const;
-
-    void initHumanoids(const std::list<Humanoid*>& humanoids);
-
     template<typename T>
     Humanoid* getClosestHumanoidTo(const Humanoid &predator) const;
 
@@ -98,6 +88,9 @@ class Field{
      * */
     void resetField();
 
+    void initHumanoids(const std::list<Humanoid *>& humanoids);
+
 };
+ #include "FieldGenericMethod.h"
 
 #endif //FIELD_H

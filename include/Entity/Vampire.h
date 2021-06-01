@@ -1,8 +1,5 @@
 #ifndef VAMPIRE_H
 #define VAMPIRE_H
-
-#include "../view/BuffyView.h"
-#include "../Field.h"
 #include "Humanoid.h"
 
 

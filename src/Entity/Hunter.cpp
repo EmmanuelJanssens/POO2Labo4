@@ -2,6 +2,8 @@
 #include "../../include/Entity/Vampire.h"
 #include "../../include/Action/MoveAction.h" // TO ERASE
 #include "../../include/Action/KillAction.h"
+#include "../../include/view/BuffyView.h"
+#include "../../include/Field.h"
 
 Hunter::Hunter(const Cell& pos):Humanoid(pos){
 }
@@ -11,7 +13,7 @@ void Hunter::render(const BuffyView &view) const {
 
 void Hunter::setAction(Field &field) {
 
-    Vampire* vampireFound = field.getClosestVampire(*this);
+    Humanoid* vampireFound = field.getClosestHumanoidTo<Vampire>(*this);
     if(vampireFound != nullptr){
 
         // kill

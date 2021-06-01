@@ -3,6 +3,8 @@
 
 #include "Action.h"
 
+class Human;
+
 /**
  * @brief Perform the action to transform a human into a vampire
  * 
