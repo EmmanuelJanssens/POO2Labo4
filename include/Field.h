@@ -16,10 +16,10 @@ class Field{
     size_t _turn;
 
     //field width
-    int _w;
+    const unsigned _w;
 
     //field height
-    int _h;
+    const unsigned _h;
 
     //list of humanoids/entities present in the scene
     std::list<Humanoid*> _humanoids;
@@ -29,7 +29,7 @@ class Field{
     /**
      * Constructor
      * */
-    Field(int w, int h);
+    Field(unsigned w, unsigned h);
 
     ~Field();
     /**
@@ -59,6 +59,11 @@ class Field{
     Vampire* getClosestVampire(const Hunter& predator) const;
 
     void initHumanoids(const std::list<Humanoid*>& humanoids);
+
+    template<typename T>
+    Humanoid* getClosestHumanoidTo(const Humanoid &predator) const;
+
+    void resetField();
 
 };
 

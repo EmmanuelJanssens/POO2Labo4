@@ -7,7 +7,7 @@
 #include <iostream>
 
 
-Field::Field(int w, int h)
+Field::Field(unsigned w, unsigned h)
     :_turn(0),_w(w),_h(h){
     //put entities on random positions
    /* for(Humanoid* entity: _humanoids){
@@ -126,4 +126,12 @@ void Field::addHumanoid(Humanoid *h) {
 
 size_t Field::getTurn() const {
     return _turn;
+}
+
+void Field::resetField() {
+    _turn = 0;
+    for(Humanoid* h : _humanoids){
+        delete h;
+    }
+    _humanoids.clear();
 }
