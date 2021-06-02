@@ -1,8 +1,9 @@
-#include <iomanip>
 #include "../include/BuffyController.h"
 #include "../include/Entity/Hunter.h"
 #include "../include/Entity/Vampire.h"
 #include "../include/Entity/Human.h"
+
+#include <iomanip>
 
 Cell randomPos(unsigned w, unsigned h);
 
@@ -33,16 +34,12 @@ void BuffyController::start(BuffyView &view) {
         switch(inputUser){
             case QUIT:
                 running = false;
-                std::cout << "QUIT" << std::endl; // debug
-
                 break;
             case STATISTICS:
                 statistics();
-                std::cout << "STATISTIC" << std::endl; // debug
                 break;
             case NEXT:
                 f.nextTurn();
-                std::cout << "NEXT" << std::endl; // debug
                 break;
             default:
                 break;
@@ -53,26 +50,24 @@ void BuffyController::start(BuffyView &view) {
 void BuffyController::statistics()  {
     Field simulation(FIELD_WIDTH, FIELD_HEIGHT);
 
-    Hunter toCheckVampires(Cell(0,0));
-    Vampire toCheckHumans(Cell(0,0));
+    Hunter toCheckClosestHumanoid(Cell(0,0));
 
     unsigned nbBuffySuccess = 0;
 
-    for(unsigned i = 0; i < NB_SIMULAITONS; i++){
+    for(unsigned i = 0; i < NB_SIMULATIONS; i++){
         simulation.resetField();
         initHumanoids(simulation);
 
-        while(simulation.getClosestHumanoidTo<Vampire>(toCheckVampires) != nullptr){
+        while(simulation.getClosestHumanoidTo<Vampire>(toCheckClosestHumanoid) != nullptr){
             simulation.nextTurn();
         }
 
-        if(simulation.getClosestHumanoidTo<Human>(toCheckHumans) != nullptr){
+        if(simulation.getClosestHumanoidTo<Human>(toCheckClosestHumanoid) != nullptr){
             nbBuffySuccess++;
         }
     }
 
-    double percentBuffySuccess = (static_cast<double> (nbBuffySuccess) * 100) / NB_SIMULAITONS;
-    std::cout << "nbBuffySuccess : " << nbBuffySuccess << std::endl;
+    double percentBuffySuccess = (static_cast<double> (nbBuffySuccess) * 100) / NB_SIMULATIONS;
 
     std::cout << "Pourcentage de succes de Buffy : " << percentBuffySuccess << "%" << std::endl;
 }

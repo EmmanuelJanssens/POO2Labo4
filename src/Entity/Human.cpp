@@ -1,7 +1,3 @@
-//
-// Created by Rosalie Chhen on 19.05.2021.
-//
-
 #include "../../include/Entity/Human.h"
 #include "../../include/Entity/Vampire.h"
 #include "../../include/Action/MoveAction.h"
@@ -21,7 +17,6 @@ void Human::setAction(Field& field){
 }
 
 Vampire *Human::getVampirized() {
-    // Controle si il est deja mort ?
     dies();
     return new Vampire(getPos());
 }

@@ -1,5 +1,3 @@
-#include <iostream>
-#include <random>
 #include <map>
 
 #include "../../include/Action/MoveAction.h"

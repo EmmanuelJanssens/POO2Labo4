@@ -34,6 +34,11 @@ public:
      * @param field field on which the action will be performed
      */
     void setAction(Field& field) override;
+
+    /**
+     * @brief destructor
+     * */
+    ~Vampire() = default;
 };
 
 #endif

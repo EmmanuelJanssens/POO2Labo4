@@ -1,7 +1,7 @@
-#include <typeinfo>
-#include <iomanip>
 #include "../include/Cell.h"
-#include "../include/Entity/Humanoid.h"
+
+#include <iomanip>
+
 std::ostream& operator<<(std::ostream& os, const Cell& c){
      // DEBUG
     os<<"("<<c._x<<","<<c._y<<")";

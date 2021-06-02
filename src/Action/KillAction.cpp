@@ -6,7 +6,7 @@ KillAction::KillAction(Humanoid *victim)
 
 void KillAction::execute(Field &) const {
     if(_victim != nullptr){
-        _victim->dies(); // des fois : terminate called recursively
+        _victim->dies();
     }
 }
 

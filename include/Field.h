@@ -88,8 +88,6 @@ class Field{
      * */
     void resetField();
 
-    void initHumanoids(const std::list<Humanoid *>& humanoids);
-
 };
  #include "FieldGenericMethod.h"
 

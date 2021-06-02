@@ -1,14 +1,12 @@
 #include "../../include/Field.h"
 #include "../../include/Entity/Vampire.h"
-#include "../../include/Action/MoveAction.h" // TO ERASE
+#include "../../include/Action/MoveAction.h"
 #include "../../include/Action/KillAction.h"
 #include "../../include/Entity/Human.h"
 #include "../../include/Action/VampirizeAction.h"
-#include "../../include/Field.h"
 #include "../../include/view/BuffyView.h"
 
-Vampire::Vampire(const Cell& pos):Humanoid(pos){
-}
+Vampire::Vampire(const Cell& pos):Humanoid(pos){}
 
 void Vampire::render(const BuffyView &view) const {
     view.display(*this);
@@ -17,10 +15,9 @@ void Vampire::render(const BuffyView &view) const {
 void Vampire::setAction(Field &field) {
 
     Humanoid* humanFound = field.getClosestHumanoidTo<Human>(*this);
-    //Humanoid* humanFound = field.getClosestHumanoidTo<Human>(*this);
     if(humanFound != nullptr){
-        // kill
-        // If the human is close enough (1 cell or 0 cell away from the vampire), the vampire kills him
+
+        // If the human is close enough (1 cell or 0 cell away from the vampire), the vampire kills or vampirize him
         if(humanFound->getPos().distanceTo(getPos()) <= 1){
             int randKillVampirize = rand()%2;
             if(randKillVampirize == 0){

@@ -3,7 +3,6 @@
 #include "../../include/Action/MoveAction.h"
 
 
-
 Humanoid::Humanoid(const Cell& pos):_position(pos), _action(nullptr){}
 
 void Humanoid::cleanAndSetAction(Action* action){

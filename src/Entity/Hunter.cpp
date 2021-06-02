@@ -1,6 +1,6 @@
 #include "../../include/Entity/Hunter.h"
 #include "../../include/Entity/Vampire.h"
-#include "../../include/Action/MoveAction.h" // TO ERASE
+#include "../../include/Action/MoveAction.h"
 #include "../../include/Action/KillAction.h"
 #include "../../include/view/BuffyView.h"
 #include "../../include/Field.h"
@@ -16,10 +16,9 @@ void Hunter::setAction(Field &field) {
     Humanoid* vampireFound = field.getClosestHumanoidTo<Vampire>(*this);
     if(vampireFound != nullptr){
 
-        // kill
         // If the vampire is close enough (1 cell or 0 cell away from Hunter), the hunter kills him
         if(vampireFound->getPos().distanceTo(getPos()) <= 1){
-            KillAction *action = new KillAction(vampireFound); // ligne qui bug : terminate recursively
+            KillAction *action = new KillAction(vampireFound);
             Humanoid::cleanAndSetAction(action);
         } else {
             // Move in the direction of the vampire

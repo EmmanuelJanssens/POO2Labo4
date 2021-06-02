@@ -33,6 +33,11 @@ public:
      * @param field field where the action will be executed
      */
     void setAction(Field& field) override;
+
+    /**
+     * @brief destructor
+     * */
+    ~Hunter() = default;
 };
 
 #endif //HUNTER_H

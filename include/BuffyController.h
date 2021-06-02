@@ -23,7 +23,14 @@ class BuffyController {
     static const unsigned NB_HUMANS = 20;
     static const unsigned NB_VAMPIRES = 10;
 
-    static const unsigned NB_SIMULAITONS = 10000;
+    static const unsigned NB_SIMULATIONS = 10000;
+
+    /**
+     * @brief Instanciate and put randomly humanoids on field
+     *
+     * @param field
+     * */
+    void initHumanoids(Field& field);
 
 public:
 
@@ -39,7 +46,10 @@ public:
      * @param view 
      */
     void start(BuffyView& view);
-    void initHumanoids(Field& field);
+
+    /**
+     * @brief Compute the success statistics of Buffy against Vampires
+     * */
     void statistics();
 };
 

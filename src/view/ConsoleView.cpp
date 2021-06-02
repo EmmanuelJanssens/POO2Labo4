@@ -1,12 +1,7 @@
 #include "../../include/view/ConsoleView.h"
-#include "../../include/Entity/Humanoid.h"
-#include "../../include/Entity/Human.h"
-#include "../../include/Entity/Vampire.h"
-
 
 #include <iostream>
 #include <string>
-
 
 using namespace std;
 
